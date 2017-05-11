@@ -11,8 +11,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{0DBE249A-696
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{E6CE466D-C0CD-451F-8444-A9638A712A1A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{5B3D06E6-33E8-43BB-8CEB-81CCEB183243}"
+EndProject
 Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5B3D06E6-33E8-43BB-8CEB-81CCEB183243} = {0DBE249A-696E-4873-AC17-EE22CA21F20D}
 	EndGlobalSection
 EndGlobal
