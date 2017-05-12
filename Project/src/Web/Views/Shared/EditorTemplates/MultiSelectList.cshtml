@@ -1,0 +1,11 @@
+﻿@model MultiSelectList
+
+@Html.ListBox(string.Empty,Model)
+
+<script>
+    $(function () {
+        $('#@Html.NameForModel()').chosen({ placeholder_text:"请选择"});
+    });
+</script>
+
+

@@ -1,0 +1,9 @@
+@foreach (var key in AlertType.Alerts.All)
+{
+    if (TempData.ContainsKey(key))
+    {
+        <script>
+            $.notify("@TempData[key]", { "status": "@key" });
+        </script>
+    }
+}

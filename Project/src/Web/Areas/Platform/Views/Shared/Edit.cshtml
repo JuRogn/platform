@@ -1,0 +1,33 @@
+﻿
+
+<div class="content-heading">
+    @Html.ThisControllerName() -   @LangManager.GetString("Edit")
+    <div class="pull-right">
+        @Html.Partial("Button_Back_List")
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body form-horizontal">
+        <form asp-action="Edit" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#Main">
+
+            @Html.AntiForgeryToken()
+
+            <div class="row">
+                @await Html.PartialAsync("_alerts")
+
+                @await Html.PartialAsync("_validationSummary")
+            </div>
+
+            <div class="row">
+                @Html.EditorForModel()
+            </div>
+            <div class="row">
+                @Html.Partial("Button_Submit")
+            </div>
+        </form>
+    </div>
+</div>
+
+
+

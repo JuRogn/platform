@@ -1,0 +1,131 @@
+﻿[
+  {
+    "outputFileName": "wwwroot/css/app.min.css",
+    "inputFiles": [
+      "wwwroot/css/app.css",
+      "wwwroot/lib/font-awesome/css/font-awesome.min.css",
+      "wwwroot/lib/simple-line-icons/css/simple-line-icons.css",
+      "wwwroot/lib/animate.css/animate.min.css",
+      "wwwroot/lib/whirl/dist/whirl.min.css",
+      "wwwroot/lib/weather-icons/css/weather-icons.min.css",
+      "wwwroot/lib/weather-icons/css/weather-icons-wind.min.css",
+      "wwwroot/lib/pace/themes/blue/pace-theme-bounce.css",
+      "wwwroot/lib/chosen/chosen.css",
+      "wwwroot/lib/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css",
+      // 自定义css
+      "wwwroot/css/site.css"
+    ],
+    "sourceMap": true
+  },
+
+  {
+    "outputFileName": "wwwroot/lib/lib.min.js",
+    "inputFiles": [
+      "wwwroot/lib/jquery/dist/jquery.min.js",
+      "wwwroot/lib/jquery-validation/dist/jquery.validate.js", //min.
+      "wwwroot/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.min.js",
+      "wwwroot/lib/modernizr/modernizr.js",
+      "wwwroot/lib/matchMedia/matchMedia.js",
+      "wwwroot/lib/bootstrap/dist/js/bootstrap.min.js",
+      "wwwroot/lib/jQuery-Storage-API/jquery.storageapi.js",
+      "wwwroot/lib/moment/min/moment-with-locales.js",
+      "wwwroot/lib/pace/pace.min.js",
+      "wwwroot/lib/jquery.easing/js/jquery.easing.js",
+      "wwwroot/lib/animo.js/animo.js",
+      "wwwroot/lib/slimScroll/jquery.slimscroll.js",
+      "wwwroot/lib/screenfull/dist/screenfull.js",
+      //"wwwroot/lib/jquery-localize-i18n/dist/jquery.localize.js",
+      "wwwroot/lib/sparkline/index.js",
+      "wwwroot/lib/flot/jquery.flot.js",
+      "wwwroot/lib/flot.tooltip/js/jquery.flot.tooltip.js",
+      "wwwroot/lib/flot/jquery.flot.resize.js",
+      "wwwroot/lib/flot/jquery.flot.pie.js",
+      "wwwroot/lib/flot/jquery.flot.time.js",
+      "wwwroot/lib/flot/jquery.flot.categories.js",
+      "wwwroot/lib/flot-spline/js/jquery.flot.spline.js",
+      "wwwroot/lib/chosen/chosen.jquery.js",
+      //"wwwroot/lib/jquery-classyloader/js/jquery.classyloader.js",
+      "wwwroot/lib/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js",
+
+
+
+      // js 初始化
+      "wwwroot/master/js/app.init.js",
+
+
+      "wwwroot/master/js/modules/bootstrap-start.js",
+
+      "wwwroot/master/js/modules/calendar.js",
+
+      //"wwwroot/master/js/modules/classyloader.js",
+
+      "wwwroot/master/js/modules/clear-storage.js",
+
+      "wwwroot/master/js/modules/constants.js",
+
+      "wwwroot/master/js/modules/flatdoc.js",
+
+      "wwwroot/master/js/modules/fullscreen.js",
+
+      "wwwroot/master/js/modules/gmap.js",
+
+      "wwwroot/master/js/modules/load-css.js",
+
+      "wwwroot/master/js/modules/localize.js",
+
+      "wwwroot/master/js/modules/maps-vector.js",
+
+      "wwwroot/master/js/modules/navbar-search.js",
+
+      "wwwroot/master/js/modules/notify.js",
+
+      "wwwroot/master/js/modules/now.js",
+
+      "wwwroot/master/js/modules/panel-tools.js",
+
+      "wwwroot/master/js/modules/play-animation.js",
+
+      "wwwroot/master/js/modules/porlets.js",
+
+      "wwwroot/master/js/modules/sidebar.js",
+
+      "wwwroot/master/js/modules/skycons.js",
+
+      "wwwroot/master/js/modules/slimscroll.js",
+
+      "wwwroot/master/js/modules/sparkline.js",
+
+      "wwwroot/master/js/modules/table-checkall.js",
+
+      "wwwroot/master/js/modules/toggle-state.js",
+
+      "wwwroot/master/js/modules/utils.js",
+
+      "wwwroot/master/js/modules/chart.js",
+
+      "wwwroot/master/js/modules/morris.js",
+
+      "wwwroot/master/js/modules/rickshaw.js",
+
+      "wwwroot/master/js/modules/chartist.js",
+
+      "wwwroot/master/js/modules/tour.js",
+
+      "wwwroot/master/js/modules/sweetalert.js",
+
+      "wwwroot/master/js/modules/color-picker.js",
+
+      "wwwroot/master/js/modules/imagecrop.js",
+
+      "wwwroot/master/js/modules/chart-knob.js",
+
+      "wwwroot/master/js/modules/chart-easypie.js",
+
+      //"wwwroot/master/js/modules/select2.js",
+
+      // 自定义js
+      "wwwroot/js/site.js"
+    ],
+    "sourceMap": true
+  }
+]

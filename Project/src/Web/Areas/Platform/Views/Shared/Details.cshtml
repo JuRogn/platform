@@ -1,0 +1,24 @@
+@using Web.Helpers
+
+<div class="content-heading">
+    
+    @Html.ThisControllerName() -   @LangManager.GetString("Details")
+
+    <div class="pull-right">
+        @Html.Partial("Button_Back_List")
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body form-horizontal">
+        <div class="row">
+            @Html.DisplayForModel()
+        </div>
+        <div class="row text-center">
+            @Html.Partial("Button_Back_List")
+        </div>
+    </div>
+</div>
+
+
+

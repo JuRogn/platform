@@ -1,0 +1,10 @@
+﻿@model SelectList
+
+@Html.DropDownList(string.Empty,Model)
+
+<script>
+    $(function () {
+        $('#@Html.NameForModel()').chosen({
+            allow_single_deselect: true,placeholder_text: "请选择"});
+    });
+</script>

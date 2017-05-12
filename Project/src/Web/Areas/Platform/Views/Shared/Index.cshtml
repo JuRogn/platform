@@ -1,0 +1,86 @@
+﻿@using System.Reflection
+@model System.Collections.IEnumerable
+@using Microsoft.AspNetCore.Mvc.Rendering
+
+
+<div class="content-heading">
+    <div class="row">
+        <div class="col-xs-6">
+
+            @await Html.PartialAsync("Button_Create", new { })
+
+            @*@await Html.PartialAsync("Button_Import", new { })*@
+
+            @await Html.PartialAsync("Button_Export", new { })
+
+        </div>
+
+        <div class="col-xs-6">
+            @await Html.PartialAsync("Search_Input")
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        
+        @await Html.PartialAsync("_alerts")
+
+        <!-- START table-responsive-->
+        <div class="table-responsive">
+            <table class="table table-striped table-hover  table-condensed">
+                <thead>
+                <tr>
+                    @foreach (var title in Model.GetType().GetGenericArguments().First().GetProperties())
+                    {
+                        if (title.Name == "Id")
+                        {
+                            <th class="text-center">
+                                @LangManager.GetString("Edit")
+                            </th>
+                        }
+                        else
+                        {
+                            <th>
+                                @LangManager.GetString(title.Name)
+                        <br/>
+                                @Html.DisplayText(title.Name)
+                                <br/>
+                                @Html.DisplayName(title.Name)
+                            </th>
+                        }
+                    }
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var item in Model)
+                {
+                    ViewData["DataList"] = item;
+                    <tr>
+
+                        @foreach (var title in Model.GetType().GetGenericArguments().First().GetProperties())
+                        {
+
+                            if (title.Name == "Id")
+                            {
+                                <td class="text-center" nowrap>
+                                    @await Html.PartialAsync("Ajax_Edit_Verify", item.GetType().GetProperty("Id").GetValue(item, new object[0]))
+                                </td>
+                            }
+                            else
+                            {
+                                <td>
+                                    @Html.Display("DataList." + title.Name)
+                                </td>
+                            }
+
+                        }
+
+                    </tr>
+                }
+                </tbody>
+            </table>
+            <pager pager-option="Model"></pager>
+        </div>
+    </div>
+</div>
