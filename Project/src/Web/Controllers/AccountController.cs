@@ -33,7 +33,7 @@ namespace Web.Controllers
         private readonly string _externalCookieScheme;
         private readonly IRepository<SysEnterpriseSysUser> _iSysEnterpriseSysUserService;
         private readonly IRepository<SysEnterprise> _sysEnterpriseService;
-        private readonly IUnitOfWork _unitOfWork;
+        //private readonly IUnitOfWork _unitOfWork;
 
         public AccountController(
             UserManager<SysUser> userManager,
@@ -41,7 +41,9 @@ namespace Web.Controllers
             IOptions<IdentityCookieOptions> identityCookieOptions,
             IEmailSender emailSender,
             ISmsSender smsSender,
-            ILoggerFactory loggerFactory, IRepository<SysEnterpriseSysUser> iSysEnterpriseSysUserService, IRepository<SysEnterprise> sysEnterpriseService, IUnitOfWork unitOfWork, RoleManager<SysRole> roleManager)
+            ILoggerFactory loggerFactory, IRepository<SysEnterpriseSysUser> iSysEnterpriseSysUserService, IRepository<SysEnterprise> sysEnterpriseService
+            //, IUnitOfWork unitOfWork
+            , RoleManager<SysRole> roleManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -50,7 +52,7 @@ namespace Web.Controllers
             _smsSender = smsSender;
             _iSysEnterpriseSysUserService = iSysEnterpriseSysUserService;
             _sysEnterpriseService = sysEnterpriseService;
-            _unitOfWork = unitOfWork;
+            //_unitOfWork = unitOfWork;
             _roleManager = roleManager;
             _logger = loggerFactory.CreateLogger<AccountController>();
         }
@@ -168,7 +170,7 @@ namespace Web.Controllers
                             //await _userManager.AddToRoleAsync(user, item.Name);
                         }
 
-                        await _unitOfWork.CommitAsync();
+                        await _iSysEnterpriseSysUserService.CommitAsync();//_unitOfWork.CommitAsync();
 
                     }
 

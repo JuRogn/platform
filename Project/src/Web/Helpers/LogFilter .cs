@@ -12,13 +12,16 @@ namespace Web.Helpers
 
         private readonly IRepository<SysControllerSysAction>  _iSysControllerSysActionService;
         private readonly IRepository<SysUserLog> _iSysUserLogService;
-        private readonly IUnitOfWork _iUnitOfWork;
+        //private readonly IUnitOfWork _iUnitOfWork;
 
-        public LogFilter(IRepository<SysControllerSysAction> iSysControllerSysActionService, IRepository<SysUserLog> iSysUserLogService, IUnitOfWork iUnitOfWork)
+        public LogFilter(IRepository<SysControllerSysAction> iSysControllerSysActionService
+            , IRepository<SysUserLog> iSysUserLogService
+            //, IUnitOfWork iUnitOfWork
+            )
         {
             _iSysControllerSysActionService = iSysControllerSysActionService;
             _iSysUserLogService = iSysUserLogService;
-            _iUnitOfWork = iUnitOfWork;
+            //_iUnitOfWork = iUnitOfWork;
         }
 
         private DateTime _actiondatetimenow;
@@ -97,7 +100,7 @@ namespace Web.Helpers
 
             _iSysUserLogService.Save(null, sysuserlog);
 
-           _iUnitOfWork.CommitAsync().Wait();
+            _iSysUserLogService.CommitAsync().Wait();
 
         }
     }

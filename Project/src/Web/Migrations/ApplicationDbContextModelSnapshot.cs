@@ -2,9 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Wjw1.Infrastructure;
-using Wjw1.Infrastructure.Models;
 
 namespace Web.Migrations
 {
@@ -17,7 +15,7 @@ namespace Web.Migrations
                 .HasAnnotation("ProductVersion", "1.1.2")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Infrastructure.Models.SysAction", b =>
+            modelBuilder.Entity("Wjw1.Infrastructure.Models.SysAction", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
@@ -44,7 +42,7 @@ namespace Web.Migrations
                     b.ToTable("SysActions");
                 });
 
-            modelBuilder.Entity("Infrastructure.Models.SysArea", b =>
+            modelBuilder.Entity("Wjw1.Infrastructure.Models.SysArea", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
@@ -69,7 +67,7 @@ namespace Web.Migrations
                     b.ToTable("SysAreas");
                 });
 
-            modelBuilder.Entity("Infrastructure.Models.SysBroadcast", b =>
+            modelBuilder.Entity("Wjw1.Infrastructure.Models.SysBroadcast", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
@@ -126,7 +124,7 @@ namespace Web.Migrations
                     b.ToTable("SysBroadcasts");
                 });
 
-            modelBuilder.Entity("Infrastructure.Models.SysBroadcastReceived", b =>
+            modelBuilder.Entity("Wjw1.Infrastructure.Models.SysBroadcastReceived", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
@@ -172,7 +170,7 @@ namespace Web.Migrations
                     b.ToTable("SysBroadcastReceiveds");
                 });
 
-            modelBuilder.Entity("Infrastructure.Models.SysCache", b =>
+            modelBuilder.Entity("Wjw1.Infrastructure.Models.SysCache", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
@@ -192,7 +190,7 @@ namespace Web.Migrations
                     b.ToTable("SysCaches");
                 });
 
-            modelBuilder.Entity("Infrastructure.Models.SysController", b =>
+            modelBuilder.Entity("Wjw1.Infrastructure.Models.SysController", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
@@ -233,7 +231,7 @@ namespace Web.Migrations
                     b.ToTable("SysControllers");
                 });
 
-            modelBuilder.Entity("Infrastructure.Models.SysControllerSysAction", b =>
+            modelBuilder.Entity("Wjw1.Infrastructure.Models.SysControllerSysAction", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
@@ -254,7 +252,7 @@ namespace Web.Migrations
                     b.ToTable("SysControllerSysActions");
                 });
 
-            modelBuilder.Entity("Infrastructure.Models.SysDepartment", b =>
+            modelBuilder.Entity("Wjw1.Infrastructure.Models.SysDepartment", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
@@ -304,7 +302,7 @@ namespace Web.Migrations
                     b.ToTable("SysDepartments");
                 });
 
-            modelBuilder.Entity("Infrastructure.Models.SysDepartmentSysUser", b =>
+            modelBuilder.Entity("Wjw1.Infrastructure.Models.SysDepartmentSysUser", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
@@ -325,7 +323,7 @@ namespace Web.Migrations
                     b.ToTable("SysDepartmentSysUser");
                 });
 
-            modelBuilder.Entity("Infrastructure.Models.SysEnterprise", b =>
+            modelBuilder.Entity("Wjw1.Infrastructure.Models.SysEnterprise", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
@@ -340,7 +338,7 @@ namespace Web.Migrations
                     b.ToTable("SysEnterprises");
                 });
 
-            modelBuilder.Entity("Infrastructure.Models.SysEnterpriseSysUser", b =>
+            modelBuilder.Entity("Wjw1.Infrastructure.Models.SysEnterpriseSysUser", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
@@ -361,7 +359,7 @@ namespace Web.Migrations
                     b.ToTable("SysEnterpriseSysUsers");
                 });
 
-            modelBuilder.Entity("Infrastructure.Models.SysHelp", b =>
+            modelBuilder.Entity("Wjw1.Infrastructure.Models.SysHelp", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
@@ -415,7 +413,7 @@ namespace Web.Migrations
                     b.ToTable("SysHelps");
                 });
 
-            modelBuilder.Entity("Infrastructure.Models.SysHelpClass", b =>
+            modelBuilder.Entity("Wjw1.Infrastructure.Models.SysHelpClass", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
@@ -465,7 +463,7 @@ namespace Web.Migrations
                     b.ToTable("SysHelpClasses");
                 });
 
-            modelBuilder.Entity("Infrastructure.Models.SysKeyword", b =>
+            modelBuilder.Entity("Wjw1.Infrastructure.Models.SysKeyword", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
@@ -515,7 +513,7 @@ namespace Web.Migrations
                     b.ToTable("SysKeywords");
                 });
 
-            modelBuilder.Entity("Infrastructure.Models.SysLanguagePack", b =>
+            modelBuilder.Entity("Wjw1.Infrastructure.Models.SysLanguagePack", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
@@ -538,7 +536,7 @@ namespace Web.Migrations
                     b.ToTable("SysLanguagePacks");
                 });
 
-            modelBuilder.Entity("Infrastructure.Models.SysRoleSysControllerSysAction", b =>
+            modelBuilder.Entity("Wjw1.Infrastructure.Models.SysRoleSysControllerSysAction", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
@@ -559,7 +557,7 @@ namespace Web.Migrations
                     b.ToTable("SysRoleSysControllerSysActions");
                 });
 
-            modelBuilder.Entity("Infrastructure.Models.SysSignalR", b =>
+            modelBuilder.Entity("Wjw1.Infrastructure.Models.SysSignalR", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
@@ -612,7 +610,7 @@ namespace Web.Migrations
                     b.ToTable("SysSignalRs");
                 });
 
-            modelBuilder.Entity("Infrastructure.Models.SysSignalROnline", b =>
+            modelBuilder.Entity("Wjw1.Infrastructure.Models.SysSignalROnline", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
@@ -658,7 +656,7 @@ namespace Web.Migrations
                     b.ToTable("SysSignalROnlines");
                 });
 
-            modelBuilder.Entity("Infrastructure.Models.SysUser", b =>
+            modelBuilder.Entity("Wjw1.Infrastructure.Models.SysUser", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
@@ -736,7 +734,7 @@ namespace Web.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("Infrastructure.Models.SysUserLog", b =>
+            modelBuilder.Entity("Wjw1.Infrastructure.Models.SysUserLog", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
@@ -807,7 +805,7 @@ namespace Web.Migrations
                     b.ToTable("SysUserLogs");
                 });
 
-            modelBuilder.Entity("Infrastructure.Models.VerifyCode", b =>
+            modelBuilder.Entity("Wjw1.Infrastructure.Models.VerifyCode", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
@@ -946,7 +944,7 @@ namespace Web.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Infrastructure.Models.SysRole", b =>
+            modelBuilder.Entity("Wjw1.Infrastructure.Models.SysRole", b =>
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole");
 
@@ -968,175 +966,175 @@ namespace Web.Migrations
                     b.HasDiscriminator().HasValue("SysRole");
                 });
 
-            modelBuilder.Entity("Infrastructure.Models.SysBroadcast", b =>
+            modelBuilder.Entity("Wjw1.Infrastructure.Models.SysBroadcast", b =>
                 {
-                    b.HasOne("Infrastructure.Models.SysUser", "UserCreatedBy")
+                    b.HasOne("Wjw1.Infrastructure.Models.SysUser", "UserCreatedBy")
                         .WithMany()
                         .HasForeignKey("CreatedBy");
 
-                    b.HasOne("Infrastructure.Models.SysUser", "UserUpdatedBy")
+                    b.HasOne("Wjw1.Infrastructure.Models.SysUser", "UserUpdatedBy")
                         .WithMany()
                         .HasForeignKey("UpdatedBy");
                 });
 
-            modelBuilder.Entity("Infrastructure.Models.SysBroadcastReceived", b =>
+            modelBuilder.Entity("Wjw1.Infrastructure.Models.SysBroadcastReceived", b =>
                 {
-                    b.HasOne("Infrastructure.Models.SysUser", "UserCreatedBy")
+                    b.HasOne("Wjw1.Infrastructure.Models.SysUser", "UserCreatedBy")
                         .WithMany()
                         .HasForeignKey("CreatedBy");
 
-                    b.HasOne("Infrastructure.Models.SysBroadcast", "SysBroadcast")
+                    b.HasOne("Wjw1.Infrastructure.Models.SysBroadcast", "SysBroadcast")
                         .WithMany("SysBroadcastReceiveds")
                         .HasForeignKey("SysBroadcastId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Infrastructure.Models.SysUser", "UserUpdatedBy")
+                    b.HasOne("Wjw1.Infrastructure.Models.SysUser", "UserUpdatedBy")
                         .WithMany()
                         .HasForeignKey("UpdatedBy");
                 });
 
-            modelBuilder.Entity("Infrastructure.Models.SysController", b =>
+            modelBuilder.Entity("Wjw1.Infrastructure.Models.SysController", b =>
                 {
-                    b.HasOne("Infrastructure.Models.SysArea", "SysArea")
+                    b.HasOne("Wjw1.Infrastructure.Models.SysArea", "SysArea")
                         .WithMany("SysControllers")
                         .HasForeignKey("SysAreaId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Infrastructure.Models.SysControllerSysAction", b =>
+            modelBuilder.Entity("Wjw1.Infrastructure.Models.SysControllerSysAction", b =>
                 {
-                    b.HasOne("Infrastructure.Models.SysAction", "SysAction")
+                    b.HasOne("Wjw1.Infrastructure.Models.SysAction", "SysAction")
                         .WithMany("SysControllerSysActions")
                         .HasForeignKey("SysActionId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Infrastructure.Models.SysController", "SysController")
+                    b.HasOne("Wjw1.Infrastructure.Models.SysController", "SysController")
                         .WithMany("SysControllerSysActions")
                         .HasForeignKey("SysControllerId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Infrastructure.Models.SysDepartment", b =>
+            modelBuilder.Entity("Wjw1.Infrastructure.Models.SysDepartment", b =>
                 {
-                    b.HasOne("Infrastructure.Models.SysUser", "UserCreatedBy")
+                    b.HasOne("Wjw1.Infrastructure.Models.SysUser", "UserCreatedBy")
                         .WithMany()
                         .HasForeignKey("CreatedBy");
 
-                    b.HasOne("Infrastructure.Models.SysUser", "UserUpdatedBy")
+                    b.HasOne("Wjw1.Infrastructure.Models.SysUser", "UserUpdatedBy")
                         .WithMany()
                         .HasForeignKey("UpdatedBy");
                 });
 
-            modelBuilder.Entity("Infrastructure.Models.SysDepartmentSysUser", b =>
+            modelBuilder.Entity("Wjw1.Infrastructure.Models.SysDepartmentSysUser", b =>
                 {
-                    b.HasOne("Infrastructure.Models.SysDepartment", "SysDepartment")
+                    b.HasOne("Wjw1.Infrastructure.Models.SysDepartment", "SysDepartment")
                         .WithMany("SysDepartmentSysUsers")
                         .HasForeignKey("SysDepartmentId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Infrastructure.Models.SysUser", "SysUser")
+                    b.HasOne("Wjw1.Infrastructure.Models.SysUser", "SysUser")
                         .WithMany("SysDepartmentSysUsers")
                         .HasForeignKey("SysUserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Infrastructure.Models.SysEnterpriseSysUser", b =>
+            modelBuilder.Entity("Wjw1.Infrastructure.Models.SysEnterpriseSysUser", b =>
                 {
-                    b.HasOne("Infrastructure.Models.SysEnterprise", "SysEnterprise")
+                    b.HasOne("Wjw1.Infrastructure.Models.SysEnterprise", "SysEnterprise")
                         .WithMany("SysEnterpriseSysUsers")
                         .HasForeignKey("SysEnterpriseId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Infrastructure.Models.SysUser", "SysUser")
+                    b.HasOne("Wjw1.Infrastructure.Models.SysUser", "SysUser")
                         .WithMany("SysEnterpriseSysUsers")
                         .HasForeignKey("SysUserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Infrastructure.Models.SysHelp", b =>
+            modelBuilder.Entity("Wjw1.Infrastructure.Models.SysHelp", b =>
                 {
-                    b.HasOne("Infrastructure.Models.SysUser", "UserCreatedBy")
+                    b.HasOne("Wjw1.Infrastructure.Models.SysUser", "UserCreatedBy")
                         .WithMany()
                         .HasForeignKey("CreatedBy");
 
-                    b.HasOne("Infrastructure.Models.SysHelpClass", "SysHelpClass")
+                    b.HasOne("Wjw1.Infrastructure.Models.SysHelpClass", "SysHelpClass")
                         .WithMany("SysHelps")
                         .HasForeignKey("SysHelpClassId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Infrastructure.Models.SysUser", "UserUpdatedBy")
+                    b.HasOne("Wjw1.Infrastructure.Models.SysUser", "UserUpdatedBy")
                         .WithMany()
                         .HasForeignKey("UpdatedBy");
                 });
 
-            modelBuilder.Entity("Infrastructure.Models.SysHelpClass", b =>
+            modelBuilder.Entity("Wjw1.Infrastructure.Models.SysHelpClass", b =>
                 {
-                    b.HasOne("Infrastructure.Models.SysUser", "UserCreatedBy")
+                    b.HasOne("Wjw1.Infrastructure.Models.SysUser", "UserCreatedBy")
                         .WithMany()
                         .HasForeignKey("CreatedBy");
 
-                    b.HasOne("Infrastructure.Models.SysUser", "UserUpdatedBy")
+                    b.HasOne("Wjw1.Infrastructure.Models.SysUser", "UserUpdatedBy")
                         .WithMany()
                         .HasForeignKey("UpdatedBy");
                 });
 
-            modelBuilder.Entity("Infrastructure.Models.SysKeyword", b =>
+            modelBuilder.Entity("Wjw1.Infrastructure.Models.SysKeyword", b =>
                 {
-                    b.HasOne("Infrastructure.Models.SysUser", "UserCreatedBy")
+                    b.HasOne("Wjw1.Infrastructure.Models.SysUser", "UserCreatedBy")
                         .WithMany()
                         .HasForeignKey("CreatedBy");
 
-                    b.HasOne("Infrastructure.Models.SysUser", "UserUpdatedBy")
+                    b.HasOne("Wjw1.Infrastructure.Models.SysUser", "UserUpdatedBy")
                         .WithMany()
                         .HasForeignKey("UpdatedBy");
                 });
 
-            modelBuilder.Entity("Infrastructure.Models.SysRoleSysControllerSysAction", b =>
+            modelBuilder.Entity("Wjw1.Infrastructure.Models.SysRoleSysControllerSysAction", b =>
                 {
-                    b.HasOne("Infrastructure.Models.SysRole", "SysRole")
+                    b.HasOne("Wjw1.Infrastructure.Models.SysRole", "SysRole")
                         .WithMany("SysRoleSysControllerSysActions")
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Infrastructure.Models.SysControllerSysAction", "SysControllerSysAction")
+                    b.HasOne("Wjw1.Infrastructure.Models.SysControllerSysAction", "SysControllerSysAction")
                         .WithMany("SysRoleSysControllerSysActions")
                         .HasForeignKey("SysControllerSysActionId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Infrastructure.Models.SysSignalR", b =>
+            modelBuilder.Entity("Wjw1.Infrastructure.Models.SysSignalR", b =>
                 {
-                    b.HasOne("Infrastructure.Models.SysUser", "UserCreatedBy")
+                    b.HasOne("Wjw1.Infrastructure.Models.SysUser", "UserCreatedBy")
                         .WithMany()
                         .HasForeignKey("CreatedBy");
 
-                    b.HasOne("Infrastructure.Models.SysUser", "UserUpdatedBy")
+                    b.HasOne("Wjw1.Infrastructure.Models.SysUser", "UserUpdatedBy")
                         .WithMany()
                         .HasForeignKey("UpdatedBy");
                 });
 
-            modelBuilder.Entity("Infrastructure.Models.SysSignalROnline", b =>
+            modelBuilder.Entity("Wjw1.Infrastructure.Models.SysSignalROnline", b =>
                 {
-                    b.HasOne("Infrastructure.Models.SysUser", "UserCreatedBy")
+                    b.HasOne("Wjw1.Infrastructure.Models.SysUser", "UserCreatedBy")
                         .WithMany()
                         .HasForeignKey("CreatedBy");
 
-                    b.HasOne("Infrastructure.Models.SysUser", "UserUpdatedBy")
+                    b.HasOne("Wjw1.Infrastructure.Models.SysUser", "UserUpdatedBy")
                         .WithMany()
                         .HasForeignKey("UpdatedBy");
                 });
 
-            modelBuilder.Entity("Infrastructure.Models.SysUserLog", b =>
+            modelBuilder.Entity("Wjw1.Infrastructure.Models.SysUserLog", b =>
                 {
-                    b.HasOne("Infrastructure.Models.SysUser", "UserCreatedBy")
+                    b.HasOne("Wjw1.Infrastructure.Models.SysUser", "UserCreatedBy")
                         .WithMany()
                         .HasForeignKey("CreatedBy");
 
-                    b.HasOne("Infrastructure.Models.SysControllerSysAction", "SysControllerSysAction")
+                    b.HasOne("Wjw1.Infrastructure.Models.SysControllerSysAction", "SysControllerSysAction")
                         .WithMany()
                         .HasForeignKey("SysControllerSysActionId");
 
-                    b.HasOne("Infrastructure.Models.SysUser", "UserUpdatedBy")
+                    b.HasOne("Wjw1.Infrastructure.Models.SysUser", "UserUpdatedBy")
                         .WithMany()
                         .HasForeignKey("UpdatedBy");
                 });
@@ -1151,7 +1149,7 @@ namespace Web.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Infrastructure.Models.SysUser")
+                    b.HasOne("Wjw1.Infrastructure.Models.SysUser")
                         .WithMany("Claims")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -1159,7 +1157,7 @@ namespace Web.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Infrastructure.Models.SysUser")
+                    b.HasOne("Wjw1.Infrastructure.Models.SysUser")
                         .WithMany("Logins")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -1172,7 +1170,7 @@ namespace Web.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Infrastructure.Models.SysUser")
+                    b.HasOne("Wjw1.Infrastructure.Models.SysUser")
                         .WithMany("Roles")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);

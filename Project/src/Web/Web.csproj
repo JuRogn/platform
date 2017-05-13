@@ -40,6 +40,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Include="Areas\Platform\Controllers\HomeController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="wwwroot\css\app.css" />
     <Content Include="wwwroot\css\bootstrap.css" />
     <Content Include="wwwroot\css\theme-a.css" />
@@ -320,7 +324,21 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Areas\" />
+    <None Include="Areas\Platform\Views\Home\Index.cshtml" />
+    <None Include="Areas\Platform\Views\Shared\Ajax_Edit_Verify.cshtml" />
+    <None Include="Areas\Platform\Views\Shared\Button_Back_List.cshtml" />
+    <None Include="Areas\Platform\Views\Shared\Button_Create.cshtml" />
+    <None Include="Areas\Platform\Views\Shared\Button_Export.cshtml" />
+    <None Include="Areas\Platform\Views\Shared\Button_Import.cshtml" />
+    <None Include="Areas\Platform\Views\Shared\Button_Submit.cshtml" />
+    <None Include="Areas\Platform\Views\Shared\Details.cshtml" />
+    <None Include="Areas\Platform\Views\Shared\Edit.cshtml" />
+    <None Include="Areas\Platform\Views\Shared\Index.cshtml" />
+    <None Include="Areas\Platform\Views\Shared\Search_Input.cshtml" />
+    <None Include="Areas\Platform\Views\Shared\_Offsidebar.cshtml" />
+    <None Include="Areas\Platform\Views\Shared\_Sidebar.cshtml" />
+    <None Include="Areas\Platform\Views\Shared\_TopNavbar.cshtml" />
+    <None Include="Areas\Platform\Views\_ViewImports.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Infrastructure\Wjw1.Infrastructure.csproj" />

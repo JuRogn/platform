@@ -12,13 +12,13 @@ namespace  Wjw1.Infrastructure
     /// 数据库操作
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public abstract class Repository<T> :IRepository<T> where T : class 
+    public  class Repository<T> :IRepository<T> where T : class 
     {
         private readonly ApplicationDbContext _dataContext;
         private readonly DbSet<T> _dbset;
         private readonly IUserInfo _userInfo;
-
-        protected Repository(ApplicationDbContext dbContext, IUserInfo userInfo)
+        
+        public Repository(ApplicationDbContext dbContext, IUserInfo userInfo)
         {
             _dataContext = dbContext;
             _userInfo = userInfo;
