@@ -50,11 +50,13 @@ namespace  Wjw1.Infrastructure
 
         IQueryable<T> GetAll(Expression<Func<T, bool>> where);
 
-    }
-
-
-    public interface IUnitOfWork
-    {
         Task<int> CommitAsync();
+
     }
+
+
+    //public interface IUnitOfWork
+    //{
+    //    Task<int> CommitAsync();
+    //}
 }

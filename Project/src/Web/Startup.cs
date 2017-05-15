@@ -77,10 +77,10 @@ namespace Web
             //作用域（Scoped）生命周期服务在每次请求被创建一次。
             //单例（Singleton）生命周期服务在它们第一次被请求时创建（或者如果你在 ConfigureServices运行时指定一个实例）并且每个后续请求将使用相同的实例。如果你的应用程序需要单例行为，建议让服务容器管理服务的生命周期而不是在自己的类中实现单例模式和管理对象的生命周期。
 
-
+            services.AddTransient(typeof(ApplicationDbContext));
+            services.AddTransient<IUserInfo, UserInfo>();
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
-
             // add user services
             
             //services.AddTransient<IViewLocalizer, LangManagerss>();
@@ -90,9 +90,9 @@ namespace Web
             services.AddMvc(a =>
             {
                 // 身份验证
-                a.Filters.Add(new UserAuthorizeAttribute(new AuthorizationPolicyBuilder()
-                    .RequireAuthenticatedUser()
-                    .Build()));
+                //a.Filters.Add(new UserAuthorizeAttribute(new AuthorizationPolicyBuilder()
+                //    .RequireAuthenticatedUser()
+                //    .Build()));
 
                 // 记录action 日志
                 //a.Filters.Add(typeof(LogFilter));
