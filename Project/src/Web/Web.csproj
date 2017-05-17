@@ -337,10 +337,12 @@
     <None Include="Areas\Platform\Views\Shared\_Offsidebar.cshtml" />
     <None Include="Areas\Platform\Views\Shared\_Sidebar.cshtml" />
     <None Include="Areas\Platform\Views\Shared\_TopNavbar.cshtml" />
+    <None Include="Areas\Platform\Views\TaskCenter\Index.cshtml" />
     <None Include="Areas\Platform\Views\_ViewImports.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Infrastructure\Wjw1.Infrastructure.csproj" />
+    <ProjectReference Include="..\Modules\Wjw1.Module.Task\Wjw1.Module.Task.csproj" />
   </ItemGroup>
 
 </Project>

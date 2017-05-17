@@ -1,7 +1,5 @@
-﻿@using Models
-@using Models.SysModels
-@using Resources
-@model PagedList<Web.Areas.Platform.Models.TaskCenterListModel>
+﻿@using Wjw1.Infrastructure.Models
+@model PagedList<Wjw1.Module.Task.ViewModels.TaskCenterListModel>
 @using Web.Helpers
 
 @inject UserManager<SysUser> UserManager
@@ -47,7 +45,7 @@
 
                 @if (!string.IsNullOrEmpty(item.ScheduleEndTime) && string.IsNullOrEmpty(item.ActualEndTime))
                 {
-                    <div>剩余@((DateTime.Parse(item.ScheduleEndTime) - DateTime.Parse(DateTimeLocal.Now)).TotalDays.ToString("F1"))天</div>
+                    <div>剩余@((DateTime.Parse(item.ScheduleEndTime) - DateTime.Now)).TotalDays.ToString("F1"))天</div>
                 }
 
 
