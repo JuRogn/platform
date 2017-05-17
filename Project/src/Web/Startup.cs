@@ -16,11 +16,14 @@ using Wjw1.Infrastructure;
 using Wjw1.Infrastructure.Models;
 using Web.Extensions;
 using System;
+using System.Collections.Generic;
 
 namespace Web
 {
     public class Startup
     {
+        private static readonly IList<ModuleInfo> Modules = new List<ModuleInfo>();
+
         private readonly IHostingEnvironment _env;
         public Startup(IHostingEnvironment env)
         {
@@ -42,6 +45,10 @@ namespace Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
+            GlobalConfiguration.WebRootPath = _env.WebRootPath;
+            GlobalConfiguration.ContentRootPath = _env.ContentRootPath;
+            services.LoadInstalledModules(Modules, _env);
+
             // 连接弹性（Connection resiliency） 
             // 所谓的连接弹性则是执行数据库命令失败时我们可以重试
             // Add framework services.

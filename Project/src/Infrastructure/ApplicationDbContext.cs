@@ -2,6 +2,10 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System;
+using System.Linq;
+using System.Reflection;
 
 namespace  Wjw1.Infrastructure
 {
@@ -13,6 +17,14 @@ namespace  Wjw1.Infrastructure
         public ApplicationDbContext(DbContextOptions options)
             : base(options)
         {
+        }
+        private static void RegisterEntities(ModelBuilder modelBuilder, IEnumerable<Type> typeToRegisters)
+        {
+            var entityTypes = typeToRegisters.Where(x => x.GetTypeInfo().IsSubclassOf(typeof(DbSetBase)) && !x.GetTypeInfo().IsAbstract);
+            foreach (var type in entityTypes)
+            {
+                modelBuilder.Entity(type);
+            }
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -29,6 +41,14 @@ namespace  Wjw1.Infrastructure
             // 创建索引
             //builder.Entity<SysUserLog>(a => a.HasIndex(b => new { b.Deleted, b.CreatedDate }));// 不管用 不知道为啥 再研究
 
+            //Todo: 遍历功能模块程序集并注册实体类型
+            List<Type> typeToRegisters = new List<Type>();
+            foreach (var module in GlobalConfiguration.Modules)
+            {
+                typeToRegisters.AddRange(module.Assembly.DefinedTypes.Select(t => t.AsType()));
+            }
+
+            RegisterEntities(builder, typeToRegisters);
             base.OnModelCreating(builder);
             // Customize the ASP.NET Identity model and override the defaults if needed.
             // For example, you can rename the ASP.NET Identity table names and more.
