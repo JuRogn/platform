@@ -7,10 +7,11 @@ using System.Linq;
 
 namespace Web
 {
-    public class InitializeDatabase
+    //数据初始化程序
+    public class DataBaseInitializer: IDataBaseInitializer
     {
 
-        public static void SeedData(IApplicationBuilder app)
+        public  void SeedData(IApplicationBuilder app)
         {
 
 

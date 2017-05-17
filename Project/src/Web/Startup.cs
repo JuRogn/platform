@@ -178,7 +178,9 @@ namespace Web
             app.UseIdentity();
 
             // 初始化数据
-            InitializeDatabase.SeedData(app);
+            app.UseDataBaseInitializer();
+            
+
 
             // Add external authentication middleware below. To configure them please see https://go.microsoft.com/fwlink/?LinkID=532715
 
