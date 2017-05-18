@@ -344,6 +344,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Infrastructure\Wjw1.Infrastructure.csproj" />
+    <ProjectReference Include="..\Modules\Wjw1.Module.Localization\Wjw1.Module.Localization.csproj" />
     <ProjectReference Include="..\Modules\Wjw1.Module.Task\Wjw1.Module.Task.csproj" />
   </ItemGroup>
 

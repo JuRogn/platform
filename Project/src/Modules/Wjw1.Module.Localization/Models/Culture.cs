@@ -6,10 +6,15 @@ using Wjw1.Infrastructure;
 
 namespace Wjw1.Module.Localization.Models
 {
-    public class Culture : DbSetBase
+    /// <summary>
+    /// 文化语言包
+    /// </summary>
+    public class Culture : DbSetId //一个系统只需存储一份
     {
+        [Display(Name ="Culture_Name"),Required(ErrorMessage = "Culture_Name_Required"),MaxLength(10)]
         public string Name { get; set; }
 
+        [ScaffoldColumn(false)]
         public IList<Resource> Resources { get; set; }
     }
 }

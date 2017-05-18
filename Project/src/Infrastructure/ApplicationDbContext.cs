@@ -20,7 +20,7 @@ namespace  Wjw1.Infrastructure
         }
         private static void RegisterEntities(ModelBuilder modelBuilder, IEnumerable<Type> typeToRegisters)
         {
-            var entityTypes = typeToRegisters.Where(x => x.GetTypeInfo().IsSubclassOf(typeof(DbSetBase)) &&x.Namespace.Contains(".Models") && !x.GetTypeInfo().IsAbstract);
+            var entityTypes = typeToRegisters.Where(x => x.GetTypeInfo().IsSubclassOf(typeof(DbSetId)) &&x.Namespace.Contains(".Models") && !x.GetTypeInfo().IsAbstract);
             foreach (var type in entityTypes)
             {
                 modelBuilder.Entity(type).HasKey("Id");

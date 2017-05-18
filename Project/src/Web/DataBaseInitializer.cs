@@ -43,7 +43,7 @@ namespace Web
                             EnterpriseName = "测试企业"
                         }
                     };
-
+                    
                     foreach (var sysEnterprise in sysEnterprises)
                         if (
                             !db.SysEnterprises.AnyAsync(
@@ -70,7 +70,7 @@ namespace Web
                                      a.AreaName == sysArea.AreaName && a.Name == sysArea.Name &&
                                      a.SystemId == sysArea.SystemId).Result)
                             db.SysAreas.AddAsync(sysArea).Wait();
-
+                    
                     // 操作类型
                     var sysActions = new[]
                     {
@@ -162,6 +162,8 @@ namespace Web
 
                         #endregion other                
 
+
+
                         #region 任务管理 800
                         new SysController
                         {
@@ -249,12 +251,20 @@ namespace Web
                             new SysController
                         {
                             SysAreaId = "Platform",
-                            Name = "语言包",
-                            ControllerName = "SysLanguage",
+                            Name = "语言",
+                            ControllerName = "Culture",
                             SystemId = "950600",
                             Ico = "fa-language"
                         },
 
+                            new SysController
+                        {
+                            SysAreaId = "Platform",
+                            Name = "语言包",
+                            ControllerName = "Resource",
+                            SystemId = "950601",
+                            Ico = "fa-language"
+                        },
 
                         new SysController
                         {
@@ -349,7 +359,7 @@ namespace Web
                                         sysRoleSysControllerSysAction.SysControllerSysActionId).Result)
                                 db.SysRoleSysControllerSysActions.AddAsync(sysRoleSysControllerSysAction).Wait();
                     }
-
+                    
                     db.SaveChangesAsync().Wait();
                 }
             }

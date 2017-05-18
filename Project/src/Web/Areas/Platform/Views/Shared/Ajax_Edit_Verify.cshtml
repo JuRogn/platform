@@ -1,5 +1,4 @@
 ﻿@using Microsoft.AspNetCore.Routing
-@using Resources
 @{
     var routevalues = Context.GetRouteData().Values.ToDictionary(key => key.Key, value => value.Value.ToString());
 
@@ -9,13 +8,13 @@
 <div>
 
     
-        <a   data-ajax="true" data-ajax-mode="replace" data-ajax-update="#Main" href="@Url.Action("Details",routevalues)">@Lang.Details</a>
+        <a   data-ajax="true" data-ajax-mode="replace" data-ajax-update="#Main" href="@Url.Action("Details",routevalues)">Details</a>
   
        
-        <a  data-ajax="true" data-ajax-mode="replace" data-ajax-update="#Main" href="@Url.Action("Edit",routevalues)">@Lang.Edit</a>
+        <a  data-ajax="true" data-ajax-mode="replace" data-ajax-update="#Main" href="@Url.Action("Edit",routevalues)">Edit</a>
    
       
-        <a   data-ajax="true" data-ajax-mode="replace" data-ajax-update="#Main" data-ajax- data-ajax-confirm="您确定要删除该记录吗？该操作不可恢复！" co href="@Url.Action("Delete",routevalues)">@Lang.Delete</a>
+        <a   data-ajax="true" data-ajax-mode="replace" data-ajax-update="#Main" data-ajax- data-ajax-confirm="您确定要删除该记录吗？该操作不可恢复！" co href="@Url.Action("Delete",routevalues)">Delete</a>
   
 
 </div>
