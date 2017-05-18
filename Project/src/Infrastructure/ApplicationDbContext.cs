@@ -20,10 +20,23 @@ namespace  Wjw1.Infrastructure
         }
         private static void RegisterEntities(ModelBuilder modelBuilder, IEnumerable<Type> typeToRegisters)
         {
-            var entityTypes = typeToRegisters.Where(x => x.GetTypeInfo().IsSubclassOf(typeof(DbSetBase)) && !x.GetTypeInfo().IsAbstract);
+            var entityTypes = typeToRegisters.Where(x => x.GetTypeInfo().IsSubclassOf(typeof(DbSetBase)) &&x.Namespace.Contains(".Models") && !x.GetTypeInfo().IsAbstract);
             foreach (var type in entityTypes)
             {
-                modelBuilder.Entity(type);
+                modelBuilder.Entity(type).HasKey("Id");
+            }
+        }
+
+        private static void RegisterConvention(ModelBuilder modelBuilder)
+        {
+            foreach (var entity in modelBuilder.Model.GetEntityTypes())
+            {
+                if (entity.ClrType.Namespace != null && entity.ClrType.Namespace.Contains("Wjw1.Module"))
+                {
+                    var nameParts = entity.ClrType.Namespace.Split('.');
+                    var tableName = string.Concat(nameParts[2], "_", entity.ClrType.Name);
+                    modelBuilder.Entity(entity.Name).ToTable(tableName);
+                }
             }
         }
 
@@ -49,6 +62,7 @@ namespace  Wjw1.Infrastructure
             }
 
             RegisterEntities(builder, typeToRegisters);
+            RegisterConvention(builder);
             base.OnModelCreating(builder);
             // Customize the ASP.NET Identity model and override the defaults if needed.
             // For example, you can rename the ASP.NET Identity table names and more.

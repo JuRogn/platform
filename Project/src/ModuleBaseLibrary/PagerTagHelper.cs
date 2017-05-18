@@ -9,9 +9,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
-using Web.Helpers;
 
-namespace Web
+namespace Wjw1.Libarary.Web
 {
     /// <summary>
     /// 分页标签

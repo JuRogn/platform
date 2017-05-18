@@ -36,13 +36,13 @@
                         if (title.Name == "Id")
                         {
                             <th class="text-center">
-                                @LangManager.GetString("Edit")
+                                Edit
                             </th>
                         }
                         else
                         {
                             <th>
-                                @LangManager.GetString(title.Name)
+                                @title.Name
                         <br/>
                                 @Html.DisplayText(title.Name)
                                 <br/>

@@ -3,7 +3,7 @@
 @model string
 
 @{
-    var htmlattributes = new Dictionary<string, object> { { "class", "form-control" }, { "placeholder", LangManager.GetString(ViewData["placeholder"]) } };
+    var htmlattributes = new Dictionary<string, object> { { "class", "form-control" }, { "placeholder", ViewData["placeholder"] } };
 
     if (ViewData.ModelMetadata.IsRequired)
     {

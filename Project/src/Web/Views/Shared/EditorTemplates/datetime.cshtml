@@ -1,4 +1,4 @@
-﻿@Html.TextBoxFor(a => a, "{0:yyyy/MM/dd HH:mm}", new { @class = " form-control", placeholder = LangManager.GetString(ViewData["placeholder"]) })
+﻿@Html.TextBoxFor(a => a, "{0:yyyy/MM/dd HH:mm}", new { @class = " form-control", placeholder = ViewData["placeholder"] })
 <script>
     $(function () {
         $('#@Html.NameForModel()').datetimepicker({ locale: 'zh-cn', format: 'YYYY/MM/DD HH:mm'});

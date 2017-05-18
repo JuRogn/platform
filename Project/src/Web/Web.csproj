@@ -28,6 +28,8 @@
 
   <ItemGroup>
     <Compile Remove="Helpers\LangManager.cs" />
+    <Compile Remove="Helpers\LinqExtensions.cs" />
+    <Compile Remove="Helpers\PagedList.cs" />
   </ItemGroup>
 
   <ItemGroup>
