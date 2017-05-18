@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.6</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Infrastructure\Wjw1.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\ModuleBaseLibrary\Wjw1.Libarary.ModuleBaseLibrary.csproj" />
+  </ItemGroup>
+
+</Project>

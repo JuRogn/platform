@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wjw1.Libarary.ModuleBaseLib
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wjw1.Module.Task", "src\Modules\Wjw1.Module.Task\Wjw1.Module.Task.csproj", "{111EDFF3-997D-4F97-B308-7E06EF5B0C47}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wjw1.Module.Localization", "src\Modules\Wjw1.Module.Localization\Wjw1.Module.Localization.csproj", "{FF941AA8-D409-4D4E-9532-FE061AC5BC6C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +45,10 @@ Global
 		{111EDFF3-997D-4F97-B308-7E06EF5B0C47}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{111EDFF3-997D-4F97-B308-7E06EF5B0C47}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{111EDFF3-997D-4F97-B308-7E06EF5B0C47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF941AA8-D409-4D4E-9532-FE061AC5BC6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF941AA8-D409-4D4E-9532-FE061AC5BC6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF941AA8-D409-4D4E-9532-FE061AC5BC6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF941AA8-D409-4D4E-9532-FE061AC5BC6C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,5 +59,6 @@ Global
 		{E960439E-438E-4271-B718-B82F08DD00AC} = {0DBE249A-696E-4873-AC17-EE22CA21F20D}
 		{8D87D242-EAF1-4A18-B916-E1A0A4533529} = {0DBE249A-696E-4873-AC17-EE22CA21F20D}
 		{111EDFF3-997D-4F97-B308-7E06EF5B0C47} = {5B3D06E6-33E8-43BB-8CEB-81CCEB183243}
+		{FF941AA8-D409-4D4E-9532-FE061AC5BC6C} = {5B3D06E6-33E8-43BB-8CEB-81CCEB183243}
 	EndGlobalSection
 EndGlobal
