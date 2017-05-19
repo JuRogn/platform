@@ -17,6 +17,8 @@ using Wjw1.Infrastructure.Models;
 using Web.Extensions;
 using System;
 using System.Collections.Generic;
+using Microsoft.Extensions.Localization;
+using Wjw1.Module.Localization;
 
 namespace Web
 {
@@ -85,11 +87,14 @@ namespace Web
             //单例（Singleton）生命周期服务在它们第一次被请求时创建（或者如果你在 ConfigureServices运行时指定一个实例）并且每个后续请求将使用相同的实例。如果你的应用程序需要单例行为，建议让服务容器管理服务的生命周期而不是在自己的类中实现单例模式和管理对象的生命周期。
 
             services.AddTransient(typeof(ApplicationDbContext));
+            //多语言包支持
+            //services.AddSingleton<IStringLocalizer, EfStringLocalizer>();
+            services.AddSingleton<IStringLocalizerFactory, EfStringLocalizerFactory>();
             services.AddTransient<IUserInfo, UserInfo>();
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
             // add user services
-            
+
             //services.AddTransient<IViewLocalizer, LangManagerss>();
 
             //services.AddTransient<IStringLocalizer, LangManagers>();
@@ -97,18 +102,18 @@ namespace Web
             services.AddMvc(a =>
             {
                 // 身份验证
-                //a.Filters.Add(new UserAuthorizeAttribute(new AuthorizationPolicyBuilder()
-                //    .RequireAuthenticatedUser()
-                //    .Build()));
+                a.Filters.Add(new UserAuthorizeAttribute(new AuthorizationPolicyBuilder()
+                    .RequireAuthenticatedUser()
+                    .Build()));
 
                 // 记录action 日志
-                //a.Filters.Add(typeof(LogFilter));
-            }).AddViewLocalization()
-                .AddDataAnnotationsLocalization(o =>
-                {
-                    //o.DataAnnotationLocalizerProvider = (a, b) =>new LangManagers(b.Create(a)) ;
-
-                });
+                a.Filters.Add(typeof(LogFilter));
+            })
+            .AddViewLocalization()
+            .AddDataAnnotationsLocalization(o =>o.DataAnnotationLocalizerProvider = (l, f) => {
+                    return f.Create(typeof(EfStringLocalizer));
+                }
+                );
 
             // 启用gzip压缩
             services.AddResponseCompression();

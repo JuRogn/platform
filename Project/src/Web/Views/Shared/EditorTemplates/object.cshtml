@@ -1,4 +1,5 @@
-﻿@foreach (var prop in ViewData.ModelMetadata.Properties.Where(pm => pm.ShowForEdit && !pm.IsReadOnly).OrderBy(a => a.Order))
+﻿
+@foreach (var prop in ViewData.ModelMetadata.Properties.Where(pm => pm.ShowForEdit && !pm.IsReadOnly).OrderBy(a => a.Order))
 {
     if (prop.TemplateHint == "HiddenInput")
     {
@@ -7,7 +8,7 @@
     else
     {
         <div class="form-group">
-            <label class="col-sm-3 control-label" for="@prop.PropertyName">@(prop.IsRequired ? "*" : "") @prop.GetDisplayName()</label>
+            <label class="col-sm-3 control-label" for="@prop.PropertyName">@(prop.IsRequired ? "*" : "") @Localizer[prop.GetDisplayName()]</label>
             <div class="col-sm-6">
                 @Html.Editor(prop.PropertyName, !string.IsNullOrEmpty(prop.TemplateHint) ? prop.TemplateHint : prop.DataTypeName, new {  placeholder = prop.Description })
                 <span class="help-block"></span>
