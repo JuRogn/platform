@@ -12,6 +12,7 @@ namespace Web.Extensions
         {
             new DataBaseInitializer().SeedData(app);
             //获取功能模块的数据初始化程序并调用
+            new Wjw1.Module.Localization.DataBaseInitializer().SeedData(app);
             return app;
         }
     }
