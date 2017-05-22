@@ -1,7 +1,8 @@
 ﻿@using System.Reflection
 @model System.Collections.IEnumerable
 @using Microsoft.AspNetCore.Mvc.Rendering
-
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer T
 
 <div class="content-heading">
     <div class="row">
@@ -42,11 +43,12 @@
                         else
                         {
                             <th>
-                                @title.Name
-                        <br/>
-                                @Html.DisplayText(title.Name)
+                                raw @title.Name
                                 <br/>
-                                @Html.DisplayName(title.Name)
+                                DisplayText @Html.DisplayText(title.Name)
+                                <br/>
+                                DisplayName @Html.DisplayName(title.Name)
+                                <br/>
                             </th>
                         }
                     }

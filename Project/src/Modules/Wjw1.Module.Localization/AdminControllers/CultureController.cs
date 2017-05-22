@@ -115,7 +115,7 @@ namespace Web.Areas.Platform.Controllers
             
             _iCultureService.Save(id, collection);
 
-            _iCultureService.CommitAsync().Wait();
+            await _iCultureService.CommitAsync();
 
             return new EditSuccessResult(id);
         }
@@ -126,13 +126,13 @@ namespace Web.Areas.Platform.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpDelete]
-        public async Task<IActionResult> Delete(object id)
+        public async Task<IActionResult> Delete(string id)
         {
             var item = _iCultureService.GetById(id);
             
             _iCultureService.Delete(id);
 
-            _iCultureService.CommitAsync().Wait();
+            await _iCultureService.CommitAsync();
 
             return new DeleteSuccessResult();
         }

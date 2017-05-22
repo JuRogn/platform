@@ -88,16 +88,13 @@ namespace Web
 
             services.AddTransient(typeof(ApplicationDbContext));
             //多语言包支持
-            //services.AddSingleton<IStringLocalizer, EfStringLocalizer>();
+            services.AddSingleton<IStringLocalizer, EfStringLocalizer>();
             services.AddSingleton<IStringLocalizerFactory, EfStringLocalizerFactory>();
             services.AddTransient<IUserInfo, UserInfo>();
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
             // add user services
-
-            //services.AddTransient<IViewLocalizer, LangManagerss>();
-
-            //services.AddTransient<IStringLocalizer, LangManagers>();
+            
 
             services.AddMvc(a =>
             {
@@ -110,10 +107,7 @@ namespace Web
                 a.Filters.Add(typeof(LogFilter));
             })
             .AddViewLocalization()
-            .AddDataAnnotationsLocalization(o =>o.DataAnnotationLocalizerProvider = (l, f) => {
-                    return f.Create(typeof(EfStringLocalizer));
-                }
-                );
+            .AddDataAnnotationsLocalization();
 
             // 启用gzip压缩
             services.AddResponseCompression();
