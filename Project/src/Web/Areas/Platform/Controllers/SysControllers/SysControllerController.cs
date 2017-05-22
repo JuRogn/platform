@@ -1,13 +1,14 @@
-﻿using System.Linq;
-using IServices.Infrastructure;
-using IServices.ISysServices;
-using Models.SysModels;
-using Web.Helpers;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using Web.Areas.Platform.Helpers;
+using Wjw1.Infrastructure;
+using Wjw1.Infrastructure.Models;
+using Wjw1.Libarary.ModuleBaseLibrary.Extentions;
+using Wjw1.Libarary.Web;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Web.Areas.Platform.Controllers
 {
@@ -17,11 +18,10 @@ namespace Web.Areas.Platform.Controllers
     [Area("Platform")]
     public class SysControllerController : Controller
     {
-        private readonly ISysActionService _sysActionService;
-        private readonly ISysAreaService _sysAreaService;
-        private readonly ISysControllerService _sysControllerService;
-        private readonly ISysControllerSysActionService _sysControllerSysActionService;
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IRepository<SysAction> _sysActionService;
+        private readonly IRepository<SysArea> _sysAreaService;
+        private readonly IRepository<SysController> _sysControllerService;
+        private readonly IRepository<SysControllerSysAction> _sysControllerSysActionService;
 
         /// <summary>
         /// 
@@ -31,13 +31,12 @@ namespace Web.Areas.Platform.Controllers
         /// <param name="unitOfWork"></param>
         /// <param name="sysControllerService"></param>
         /// <param name="sysControllerSysActionService"></param>
-        public SysControllerController(ISysActionService sysActionService, ISysAreaService sysAreaService,
-                                       IUnitOfWork unitOfWork, ISysControllerService sysControllerService,
-                                       ISysControllerSysActionService sysControllerSysActionService)
+        public SysControllerController(IRepository<SysAction> sysActionService, IRepository<SysArea> sysAreaService,
+                                       IRepository<SysController> sysControllerService,
+                                       IRepository<SysControllerSysAction> sysControllerSysActionService)
         {
             _sysActionService = sysActionService;
             _sysAreaService = sysAreaService;
-            _unitOfWork = unitOfWork;
             _sysControllerService = sysControllerService;
             _sysControllerSysActionService = sysControllerSysActionService;
         }
@@ -175,7 +174,7 @@ namespace Web.Areas.Platform.Controllers
 
             _sysControllerService.Save(id, collection);
 
-            await _unitOfWork.CommitAsync();
+            await _sysControllerService.CommitAsync();
 
             return new EditSuccessResult(id);
         }
@@ -193,7 +192,7 @@ namespace Web.Areas.Platform.Controllers
         {
             _sysControllerService.Delete(id);
 
-            await _unitOfWork.CommitAsync();
+            await _sysControllerService.CommitAsync();
 
             return new DeleteSuccessResult();
         }

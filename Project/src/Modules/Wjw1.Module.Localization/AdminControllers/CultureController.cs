@@ -1,17 +1,15 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using System;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System.Linq.Dynamic.Core;
 using System.Threading.Tasks;
 
 using Wjw1.Infrastructure;
-using Wjw1.Infrastructure.Models;
 using Wjw1.Libarary.ModuleBaseLibrary.Extentions;
 using Wjw1.Libarary.Web;
 using Wjw1.Libarary.Web.ActionResults;
 using Wjw1.Module.Localization.Models;
+
+using Microsoft.AspNetCore.Authorization;
 
 namespace Web.Areas.Platform.Controllers
 {
@@ -104,20 +102,39 @@ namespace Web.Areas.Platform.Controllers
         /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id,Culture collection)
+        public async Task<IActionResult> Edit(string id, Culture collection)
         {
             if (!ModelState.IsValid)
             {
                 await Edit(id);
                 return View(collection);
             }
-            
-            
+
+
             _iCultureService.Save(id, collection);
 
             await _iCultureService.CommitAsync();
 
             return new EditSuccessResult(id);
+        }
+
+
+        /// <summary>
+        /// 删除
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpDelete]
+        [AllowAnonymous]
+        public async Task<IActionResult> Delete(string id)
+        {
+            var item = _iCultureService.GetById(id);
+
+            _iCultureService.Delete(id);
+
+            await _iCultureService.CommitAsync();
+
+            return new DeleteSuccessResult();
         }
 
         /// <summary>
@@ -126,7 +143,8 @@ namespace Web.Areas.Platform.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpDelete]
-        public async Task<IActionResult> Delete(string id)
+        [AllowAnonymous]
+        public async Task<IActionResult> Remove(string id)
         {
             var item = _iCultureService.GetById(id);
             

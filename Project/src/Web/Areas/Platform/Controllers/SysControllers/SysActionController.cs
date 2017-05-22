@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Linq;
-using IServices.Infrastructure;
-using IServices.ISysServices;
-using Models.SysModels;
-using Web.Helpers;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Web.Areas.Platform.Helpers;
+using Wjw1.Infrastructure;
+using Wjw1.Infrastructure.Models;
+using Wjw1.Libarary.ModuleBaseLibrary.Extentions;
+using Wjw1.Libarary.Web;
 
 namespace Web.Areas.Platform.Controllers
 {
@@ -17,12 +16,10 @@ namespace Web.Areas.Platform.Controllers
     [Area("Platform")]
     public class SysActionController : Controller
     {
-        private readonly ISysActionService _sysActionService;
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IRepository<SysAction> _sysActionService;
 
-        public SysActionController(IUnitOfWork unitOfWork, ISysActionService sysActionService)
+        public SysActionController(IRepository<SysAction> sysActionService)
         {
-            _unitOfWork = unitOfWork;
             _sysActionService = sysActionService;
         }
 
@@ -123,7 +120,7 @@ namespace Web.Areas.Platform.Controllers
 
             _sysActionService.Save(id, collection);
 
-            await _unitOfWork.CommitAsync();
+            await _sysActionService.CommitAsync();
 
             return new EditSuccessResult(id);
         }
@@ -149,7 +146,7 @@ namespace Web.Areas.Platform.Controllers
 
             _sysActionService.Delete(item);
 
-            await _unitOfWork.CommitAsync();
+            await _sysActionService.CommitAsync();
 
 
             //return RedirectToAction("Index");

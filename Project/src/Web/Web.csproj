@@ -43,6 +43,11 @@
 
   <ItemGroup>
     <Compile Include="Areas\Platform\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Platform\Controllers\SysControllers\SysActionController.cs" />
+    <Compile Include="Areas\Platform\Controllers\SysControllers\SysControllerController.cs" />
+    <Compile Include="Areas\Platform\Controllers\SysControllers\SysDepartmentController.cs" />
+    <Compile Include="Areas\Platform\Controllers\SysControllers\SysUserLogController.cs" />
+    <Compile Include="Areas\Platform\Controllers\SysHelpControllers\SysHelpClassController.cs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,14 +1,12 @@
-﻿using System;
-using System.Linq;
-using IServices.Infrastructure;
-using IServices.ISysServices;
-using Models.SysModels;
-using Web.Helpers;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Web.Areas.Platform.Helpers;
+using Wjw1.Infrastructure;
+using Wjw1.Infrastructure.Models;
+using Wjw1.Libarary.ModuleBaseLibrary.Extentions;
+using Wjw1.Libarary.Web;
 
 namespace Web.Areas.Platform.Controllers
 {
@@ -18,12 +16,10 @@ namespace Web.Areas.Platform.Controllers
     [Area("Platform")]
     public class SysHelpClassController : Controller
     {
-        private readonly ISysHelpClassService _SysHelpClassService;
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IRepository<SysHelpClass> _SysHelpClassService;
 
-        public SysHelpClassController(IUnitOfWork unitOfWork, ISysHelpClassService SysHelpClassService)
+        public SysHelpClassController(IRepository<SysHelpClass> SysHelpClassService)
         {
-            _unitOfWork = unitOfWork;
             _SysHelpClassService = SysHelpClassService;
         }
 
@@ -123,7 +119,7 @@ namespace Web.Areas.Platform.Controllers
 
             _SysHelpClassService.Save(id, collection);
 
-            await _unitOfWork.CommitAsync();
+            await _SysHelpClassService.CommitAsync();
 
             return new EditSuccessResult(id);
         }
@@ -141,7 +137,7 @@ namespace Web.Areas.Platform.Controllers
         {
             _SysHelpClassService.Delete(id);
 
-            await _unitOfWork.CommitAsync();
+            await _SysHelpClassService.CommitAsync();
             
             return new DeleteSuccessResult();
         }

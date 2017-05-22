@@ -1,14 +1,13 @@
-﻿using System;
-using System.Linq;
-using IServices.Infrastructure;
-using IServices.ISysServices;
-using Models.SysModels;
-using Web.Helpers;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using Web.Areas.Platform.Helpers;
+using Wjw1.Infrastructure;
+using Wjw1.Infrastructure.Models;
+using Wjw1.Libarary.ModuleBaseLibrary.Extentions;
+using Wjw1.Libarary.Web;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Web.Areas.Platform.Controllers
 {
@@ -18,12 +17,10 @@ namespace Web.Areas.Platform.Controllers
     [Area("Platform")]
     public class SysDepartmentController : Controller
     {
-        private readonly ISysDepartmentService _SysDepartmentService;
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IRepository<SysDepartment> _SysDepartmentService;
 
-        public SysDepartmentController(IUnitOfWork unitOfWork, ISysDepartmentService SysDepartmentService)
+        public SysDepartmentController(IRepository<SysDepartment> SysDepartmentService)
         {
-            _unitOfWork = unitOfWork;
             _SysDepartmentService = SysDepartmentService;
         }
 
@@ -123,7 +120,7 @@ namespace Web.Areas.Platform.Controllers
 
             _SysDepartmentService.Save(id, collection);
 
-            await _unitOfWork.CommitAsync();
+            await _SysDepartmentService.CommitAsync();
 
             return new EditSuccessResult(id);
         }
@@ -141,7 +138,7 @@ namespace Web.Areas.Platform.Controllers
         {
             _SysDepartmentService.Delete(id);
 
-            await _unitOfWork.CommitAsync();
+            await _SysDepartmentService.CommitAsync();
            
             return new DeleteSuccessResult();
         }

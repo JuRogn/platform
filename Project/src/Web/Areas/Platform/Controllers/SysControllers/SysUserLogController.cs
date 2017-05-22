@@ -1,25 +1,23 @@
-﻿using IServices.ISysServices;
-using Microsoft.AspNetCore.Mvc;
-using Models;
-using System.Globalization;
-using System.IO;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
-using OfficeOpenXml;
-using Web.Helpers;
+using Microsoft.AspNetCore.Mvc;
+using Wjw1.Infrastructure;
+using Wjw1.Infrastructure.Models;
+using Wjw1.Libarary.ModuleBaseLibrary.Extentions;
+using Wjw1.Libarary.Web;
 
 namespace Web.Areas.Platform.Controllers
 {
     [Area("Platform")]
     public class SysUserLogController : Controller
     {
-        private readonly ISysUserLogService _sysUserLogService;
+        private readonly IRepository<SysUserLog> _sysUserLogService;
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="sysUserLogService"></param>
-        public SysUserLogController(ISysUserLogService sysUserLogService)
+        public SysUserLogController(IRepository<SysUserLog> sysUserLogService)
         {
             _sysUserLogService = sysUserLogService;
         }
