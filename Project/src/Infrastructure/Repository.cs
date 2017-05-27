@@ -8,6 +8,12 @@ using System.Linq.Dynamic.Core;
 
 namespace  Wjw1.Infrastructure
 {
+    public enum DeletedDatas
+    {
+        UnDeletedOnly = 100,
+        DeletedOnly =  200,
+        All = 300
+    }
     /// <summary>
     /// 数据库操作
     /// </summary>
@@ -28,7 +34,7 @@ namespace  Wjw1.Infrastructure
         /// <summary>
         /// 添加
         /// </summary>
-        /// <param name="entity"></param>
+        /// <param name="entity">实体对象</param>
         public virtual void Add(T entity)
         {
             var dbSetBase = entity as IDbSetBase;
@@ -55,7 +61,7 @@ namespace  Wjw1.Infrastructure
         /// <summary>
         /// 更新
         /// </summary>
-        /// <param name="entity"></param>
+        /// <param name="entity">实体对象</param>
         public virtual void Update(T entity)
         {
             _dbset.Attach(entity);
@@ -122,7 +128,7 @@ namespace  Wjw1.Infrastructure
         /// <summary>
         ///  删除
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">实体对象Id</param>
         /// <param name="remove">物理删除标记 默认false</param>
         public virtual void Delete(object id, bool remove = false)
         {
@@ -133,7 +139,7 @@ namespace  Wjw1.Infrastructure
         /// <summary>
         /// 删除
         /// </summary>
-        /// <param name="item"></param>
+        /// <param name="item">删除实体对象</param>
         /// <param name="remove">物理删除标记 默认false</param>
         public virtual void Delete(T item, bool remove = false)
         {
@@ -154,7 +160,7 @@ namespace  Wjw1.Infrastructure
         /// <summary>
         ///  删除
         /// </summary>
-        /// <param name="where"></param>
+        /// <param name="where">查询条件</param>
         /// <param name="remove">物理删除标记 默认false</param>
         public virtual void Delete(Expression<Func<T, bool>> where, bool remove = false)
         {
@@ -198,7 +204,7 @@ namespace  Wjw1.Infrastructure
         /// 获取用户所在企业数据
         /// </summary>
         /// <param name="containsDeleted">包含已删除数据</param>
-        /// <param name="allEnt"></param>
+        /// <param name="allEnt">查询所有企业数据</param>
         /// <returns></returns>
         public virtual IQueryable<T> GetAll(bool containsDeleted = false, bool allEnt = false)
         {
@@ -227,6 +233,10 @@ namespace  Wjw1.Infrastructure
             return model;
         }
 
+        /// <summary>
+        /// 提交修改
+        /// </summary>
+        /// <returns></returns>
         public Task<int> CommitAsync()
         {
             return _dataContext.CommitAsync();

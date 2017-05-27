@@ -12,6 +12,7 @@ namespace Web.Helpers
     public class UserInfo : IUserInfo
     {
         private readonly UserManager<SysUser> _userManager;
+        private readonly RoleManager<SysRole> _roleManager;
         private readonly  IHttpContextAccessor _httpContextAccessor;
 
         public UserInfo(UserManager<SysUser> userManager, IHttpContextAccessor httpContextAccessor)
@@ -25,6 +26,11 @@ namespace Web.Helpers
         public string UserId =>  GetCurrentUserAsync().Result?.Id;
 
         public string UserName => GetCurrentUserAsync().Result?.UserName;
+
+        public bool? IsInRole(string roleName)
+        {
+            return _userManager.GetRolesAsync(GetCurrentUserAsync().Result).Result?.Any(r => r.Equals(roleName));
+        }
 
         private Task<SysUser> GetCurrentUserAsync()
         {

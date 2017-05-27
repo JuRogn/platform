@@ -123,7 +123,7 @@ namespace Web
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            loggerFactory.AddConsole((c, l) => l >= LogLevel.Warning);
+            loggerFactory.AddConsole((c, l) => l >= LogLevel.Trace);
             //loggerFactory.AddConsole((c, l) => l >= LogLevel.Information);
             //loggerFactory.AddConsole(Configuration.GetSection("Logging"));
 
@@ -139,7 +139,6 @@ namespace Web
             //{
             //    app.UseExceptionHandler("/Home/Error");
             //}
-
             app.UseExceptionHandler(builder =>
             {
                 builder.Run(

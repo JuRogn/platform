@@ -51,10 +51,7 @@ namespace Web.Areas.Platform.Controllers
             {
                 _distributedCache.Set("now", System.Text.Encoding.UTF8.GetBytes(DateTime.Now.ToString()));
             }
-
-
-            ViewBag.lang = "aa";// _localizer["aa"].Value;
-
+            
             return View();
         }
     }
