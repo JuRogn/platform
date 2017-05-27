@@ -5,6 +5,24 @@ using System.Threading.Tasks;
 
 namespace  Wjw1.Infrastructure
 {
+    /// <summary>
+    /// 删除数据查询类型
+    /// </summary>
+    public enum DeletedDataType
+    {
+        /// <summary>
+        /// 未删除的数据
+        /// </summary>
+        UnDeletedOnly = 100,
+        /// <summary>
+        /// 已删除的数据
+        /// </summary>
+        DeletedOnly = 200,
+        /// <summary>
+        /// 全部数据
+        /// </summary>
+        All = 300
+    }
     public interface IRepository<T> where T : class
     {
         void Add(T entity);
@@ -46,9 +64,16 @@ namespace  Wjw1.Infrastructure
         /// </summary>
         /// <param name="containsDeleted">是否包含已删除数据</param>
         /// <returns></returns>
-        IQueryable<T> GetAll(bool containsDeleted = false, bool allEnt = false);
+        IQueryable<T> GetAll(DeletedDataType deletedDataType = DeletedDataType.UnDeletedOnly, EnterpriseDataType enterpriseDataType = EnterpriseDataType.CurrentAndSubs);
 
-        IQueryable<T> GetAll(Expression<Func<T, bool>> where);
+        /// <summary>
+        /// 获取指定条件查询数据
+        /// </summary>
+        /// <param name="where"></param>
+        /// <param name="deletedDataType"></param>
+        /// <param name="enterpriseDataType"></param>
+        /// <returns></returns>
+        IQueryable<T> GetAll(Expression<Func<T, bool>> where, DeletedDataType deletedDataType = DeletedDataType.UnDeletedOnly, EnterpriseDataType enterpriseDataType = EnterpriseDataType.CurrentAndSubs);
 
         Task<int> CommitAsync();
 

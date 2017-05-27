@@ -8,11 +8,24 @@ using System.Linq.Dynamic.Core;
 
 namespace  Wjw1.Infrastructure
 {
-    public enum DeletedDatas
+
+    /// <summary>
+    /// 企业数据查询类型
+    /// </summary>
+    public enum EnterpriseDataType
     {
-        UnDeletedOnly = 100,
-        DeletedOnly =  200,
-        All = 300
+        /// <summary>
+        /// 查看本公司及下级子公司数据，超级管理员能查看所有数据
+        /// </summary>
+        CurrentAndSubs = 100,
+        /// <summary>
+        /// 只能查看本级公司数据
+        /// </summary>
+        CurrentOnly = 200,     
+        /// <summary>
+        /// 查看所属总公司的所有数据 ，前六位编码一致
+        /// </summary>
+        All=300
     }
     /// <summary>
     /// 数据库操作
@@ -171,7 +184,7 @@ namespace  Wjw1.Infrastructure
         }
 
         /// <summary>
-        /// 获取单个记录
+        /// 获取单个记录 默认可获取下级子公司数据
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -185,7 +198,7 @@ namespace  Wjw1.Infrastructure
 
             var iEnterprise = item as IEnterprise;
 
-            if (iEnterprise != null && iEnterprise.EnterpriseId != _userInfo.EnterpriseId) return null;
+            if (iEnterprise != null && iEnterprise.EnterpriseId.StartsWith(_userInfo.EnterpriseId)) return null;
 
             return item;
         }
@@ -195,9 +208,9 @@ namespace  Wjw1.Infrastructure
         /// </summary>
         /// <param name="where"></param>
         /// <returns></returns>
-        public virtual IQueryable<T> GetAll(Expression<Func<T, bool>> where)
+        public virtual IQueryable<T> GetAll(Expression<Func<T, bool>> where, DeletedDataType deletedDataType = DeletedDataType.UnDeletedOnly, EnterpriseDataType enterpriseDataType = EnterpriseDataType.CurrentAndSubs)
         {
-            return GetAll().Where(where);
+            return GetAll(deletedDataType,enterpriseDataType).Where(where);
         }
 
         /// <summary>
@@ -206,20 +219,37 @@ namespace  Wjw1.Infrastructure
         /// <param name="containsDeleted">包含已删除数据</param>
         /// <param name="allEnt">查询所有企业数据</param>
         /// <returns></returns>
-        public virtual IQueryable<T> GetAll(bool containsDeleted = false, bool allEnt = false)
+        public virtual IQueryable<T> GetAll(DeletedDataType deletedDataType = DeletedDataType.UnDeletedOnly, EnterpriseDataType enterpriseDataType = EnterpriseDataType.CurrentAndSubs)
         {
             var model = _dbset as IQueryable<T>;
 
-            if (!allEnt && typeof(IEnterprise).IsAssignableFrom(typeof(T)))
+            if (typeof(IEnterprise).IsAssignableFrom(typeof(T)))
             {
-                model = model.Where("EnterpriseId=\"" + _userInfo.EnterpriseId + "\"");
+                switch (enterpriseDataType) {
+                    case EnterpriseDataType.CurrentOnly:
+                        model = model.Where("EnterpriseId=\"" + _userInfo.EnterpriseId + "\"");
+                        break;
+                    case EnterpriseDataType.CurrentAndSubs:
+                        model = model.Where("EnterpriseId like \"" + _userInfo.EnterpriseId+ "%\"");
+                        break;
+                    default:
+                        model = model.Where("EnterpriseId like \"100%\"");
+                        break;
+                }
             }
 
             if (typeof(IDbSetBase).IsAssignableFrom(typeof(T)))
             {
-                if (!containsDeleted)
+                switch (deletedDataType)
                 {
-                    model = model.Where("Deleted=false");
+                    case DeletedDataType.UnDeletedOnly:
+                        model = model.Where("Deleted=false");
+                        break;
+                    case DeletedDataType.DeletedOnly:
+                        model = model.Where("Deleted=true");
+                        break;
+                    default:
+                        break;
                 }
 
                 model = model.OrderBy("CreatedDate desc, CreatedTime desc");
