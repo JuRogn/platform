@@ -124,8 +124,7 @@ namespace Web.Areas.Platform.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpDelete]
-        [AllowAnonymous]
+        //[HttpDelete]
         public async Task<IActionResult> Delete(string id)
         {
             var item = _iCultureService.GetById(id);
@@ -136,23 +135,6 @@ namespace Web.Areas.Platform.Controllers
 
             return new DeleteSuccessResult();
         }
-
-        /// <summary>
-        /// 删除
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        [HttpDelete]
-        [AllowAnonymous]
-        public async Task<IActionResult> Remove(string id)
-        {
-            var item = _iCultureService.GetById(id);
-            
-            _iCultureService.Delete(id);
-
-            await _iCultureService.CommitAsync();
-
-            return new DeleteSuccessResult();
-        }
+        
     }
 }

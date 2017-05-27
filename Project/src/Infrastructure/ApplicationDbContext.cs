@@ -134,11 +134,7 @@ namespace  Wjw1.Infrastructure
         /// 系统消息读取记录
         /// </summary>
         public DbSet<SysBroadcastReceived> SysBroadcastReceiveds { get; set; }
-
-        /// <summary>
-        /// 语言包
-        /// </summary>
-        public DbSet<SysLanguagePack> SysLanguagePacks { get; set; }
+        
 
         public DbSet<SysSignalR> SysSignalRs { get; set; }
 
