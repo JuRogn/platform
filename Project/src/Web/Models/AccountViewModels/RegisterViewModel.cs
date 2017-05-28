@@ -8,6 +8,9 @@ namespace Web.Models.AccountViewModels
 {
     public class RegisterViewModel
     {
+        [UIHint("HiddenInput")]
+        public string EnterpriseId { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]

@@ -230,10 +230,10 @@ namespace  Wjw1.Infrastructure
                         model = model.Where("EnterpriseId=\"" + _userInfo.EnterpriseId + "\"");
                         break;
                     case EnterpriseDataType.CurrentAndSubs:
-                        model = model.Where("EnterpriseId like \"" + _userInfo.EnterpriseId+ "%\"");
+                        model = model.Where("EnterpriseId.StartsWith(\"" + _userInfo.EnterpriseId + "\")");
                         break;
                     default:
-                        model = model.Where("EnterpriseId like \"100%\"");
+                        model = model.Where("EnterpriseId.StartsWith(\"100\")");
                         break;
                 }
             }

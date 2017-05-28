@@ -4,6 +4,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Wjw1.Infrastructure.Models
 {
+    /// <summary>
+    /// 角色权限
+    /// </summary>
     public class SysRoleSysControllerSysAction :DbSetId
     {
 

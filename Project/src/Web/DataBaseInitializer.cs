@@ -34,13 +34,13 @@ namespace Web
                     {
                         new SysEnterprise
                         {
-                            Id = "defaultEnt",
-                            EnterpriseName = "系统默认企业"
+                            Id = "100",
+                            EnterpriseName = "精一科技"//系统初始化为平台运营方
                         },
                         new SysEnterprise
                         {
-                            Id = "TestEnt",
-                            EnterpriseName = "测试企业"
+                            Id = "100001",
+                            EnterpriseName = "测试企业"//系统测试用，系统交付客户公司名称
                         }
                     };
                     
@@ -54,6 +54,13 @@ namespace Web
                     // 定义好的区域
                     var sysAreas = new[]
                     {
+                        new SysArea
+                        {
+                            Id = "Dev",
+                            AreaName = "Dev",
+                            Name = "开发平台",//系统开发和系统部署
+                            SystemId = "999"
+                        },
                         new SysArea
                         {
                             Id = "Platform",
@@ -109,14 +116,23 @@ namespace Web
                             SystemId = "006",
                             System = true
                         },
-                        
-                        //new SysAction
-                        //{
-                        //    Name = "导出",
-                        //    ActionName = "Report",
-                        //    SystemId = "007",
-                        //    System = true
-                        //}
+
+                        new SysAction
+                        {
+                            Name = "导出",
+                            ActionName = "Report",
+                            SystemId = "007",
+                            System = false
+                        },
+
+                        new SysAction
+                        {
+                            Name = "导入",
+                            ActionName = "Import",
+                            SystemId = "008",
+                            System = false
+                        }
+                        //可手动添加其他需要的Action
                     };
                     foreach (var sysAction in sysActions)
                         if (!db.SysActions.AnyAsync(a => a.ActionName == sysAction.ActionName).Result)
@@ -305,7 +321,7 @@ namespace Web
                     #endregion
 
                     db.SaveChangesAsync().Wait();
-
+                    //关联系统默认Action到控制器
                     var sysControllerSysActions = (from sysAction in db.SysActions.Where(a => a.System)
                                                    from sysController in db.SysControllers
                                                    select
@@ -324,25 +340,38 @@ namespace Web
 
                     db.SaveChangesAsync().Wait();
 
-                    // 角色
-                    foreach (var ent in sysEnterprises)
+                    // 角色及权限数据
+                    #region 默认角色
+                    var defualtRole = new SysRole
                     {
-                        //生成系统管理员
-                        var sysRole = new SysRole
+                        Id = "DefaultRole",
+                        Name = "DefaultRole",
+                        RoleName = "默认角色",
+                        System = true,
+                        SystemId = "998",
+                        EnterpriseId = "100"
+                    };
+
+                    if (!db.SysRoles.AnyAsync(a => a.Id == defualtRole.Id).Result)
+                        db.SysRoles.AddAsync(defualtRole).Wait();
+
+                    #endregion
+                    #region  超级管理员
+                    var sysRole = new SysRole
                         {
-                            Id = "admin-" + ent.Id,
-                            Name = ent.EnterpriseName + "系统管理员",
-                            RoleName = "系统管理员",
-                            SysDefault = true,
+                            Id = "SuperAdmin",
+                            Name = "SuperAdmin",
+                            RoleName = "超级管理员",
+                            System = true,
                             SystemId = "999",
-                            EnterpriseId = ent.Id
+                            EnterpriseId = "100"
                         };
 
                         if (!db.SysRoles.AnyAsync(a => a.Id == sysRole.Id).Result)
                             db.SysRoles.AddAsync(sysRole).Wait();
 
-                        //系统管理员自动获得所有权限
-                        var sysRoleSysControllerSysActions = (from aa in db.SysControllerSysActions
+                    //超级管理员自动获得所有权限 Todo:舍弃，超级管理员应该只有系统设置权限 区域/控制器/Action/企业或租户
+                    var sysRoleSysControllerSysActions = (from aa in db.SysControllerSysActions
                                                               select
                                                               new SysRoleSysControllerSysAction
                                                               {
@@ -358,9 +387,9 @@ namespace Web
                                         a.SysControllerSysActionId ==
                                         sysRoleSysControllerSysAction.SysControllerSysActionId).Result)
                                 db.SysRoleSysControllerSysActions.AddAsync(sysRoleSysControllerSysAction).Wait();
-                    }
                     
                     db.SaveChangesAsync().Wait();
+                    #endregion
                 }
             }
         }

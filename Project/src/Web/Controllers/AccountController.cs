@@ -134,8 +134,9 @@ namespace Web.Controllers
         // GET: /Account/Register
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult Register(string returnUrl = null)
+        public IActionResult Register(string enterpriseId="100", string returnUrl = null)
         {
+            ViewData["EnterpriseId"] = enterpriseId;
             ViewData["ReturnUrl"] = returnUrl;
             return View();
         }
@@ -154,24 +155,21 @@ namespace Web.Controllers
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    if (_userManager.Users.Count() <= 3)
+                    if (_userManager.Users.Count() <= 1)
                     {
-                        // 添加关联企业
-                        foreach (var item in _sysEnterpriseService.GetAll())
-                        {
-                            _iSysEnterpriseSysUserService.Save(null, new SysEnterpriseSysUser() { SysEnterpriseId = item.Id, SysUserId = user.Id });
-                        }
+                        // 关联到平台运营企业或者总公司
+                        _iSysEnterpriseSysUserService.Save(null, new SysEnterpriseSysUser() { SysEnterpriseId = "100", SysUserId = user.Id });
 
-                        // 添加关联角色
-                        foreach (var item in _roleManager.Roles)
-                        {
-                            user.Roles.Add(new IdentityUserRole<string>() { RoleId = item.Id });
-
-                            //await _userManager.AddToRoleAsync(user, item.Name);
-                        }
+                        // 添加超级用户
+                        user.Roles.Add(new IdentityUserRole<string>() { RoleId = "SuperAdmin" });
 
                         await _iSysEnterpriseSysUserService.CommitAsync();//_unitOfWork.CommitAsync();
-
+                    }
+                    else
+                    {
+                        // 添加关联企业
+                        _iSysEnterpriseSysUserService.Save(null, new SysEnterpriseSysUser() { SysEnterpriseId = model.EnterpriseId, SysUserId = user.Id });//企业用户，默认为全平台用户
+                        await _iSysEnterpriseSysUserService.CommitAsync();
                     }
 
                     TempData[Alerts.Success] = "注册成功，请您登陆";
