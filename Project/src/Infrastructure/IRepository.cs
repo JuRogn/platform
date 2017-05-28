@@ -59,19 +59,21 @@ namespace  Wjw1.Infrastructure
         /// <returns></returns>
         T GetById(object id);
 
+
         /// <summary>
-        /// 获取全部数据
+        /// 获取指定范围的所有数据
         /// </summary>
-        /// <param name="containsDeleted">是否包含已删除数据</param>
+        /// <param name="deletedDataType">删除数据范围</param>
+        /// <param name="enterpriseDataType">企业数据范围</param>
         /// <returns></returns>
         IQueryable<T> GetAll(DeletedDataType deletedDataType = DeletedDataType.UnDeletedOnly, EnterpriseDataType enterpriseDataType = EnterpriseDataType.CurrentAndSubs);
 
         /// <summary>
-        /// 获取指定条件查询数据
+        /// 获取指定条件的数据
         /// </summary>
-        /// <param name="where"></param>
-        /// <param name="deletedDataType"></param>
-        /// <param name="enterpriseDataType"></param>
+        /// <param name="where">查询条件</param>
+        /// <param name="deletedDataType">删除数据范围</param>
+        /// <param name="enterpriseDataType">企业数据范围</param>
         /// <returns></returns>
         IQueryable<T> GetAll(Expression<Func<T, bool>> where, DeletedDataType deletedDataType = DeletedDataType.UnDeletedOnly, EnterpriseDataType enterpriseDataType = EnterpriseDataType.CurrentAndSubs);
 

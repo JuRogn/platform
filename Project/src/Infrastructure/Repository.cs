@@ -204,9 +204,11 @@ namespace  Wjw1.Infrastructure
         }
 
         /// <summary>
-        /// 获取符合条件的用户所在企业数据
+        /// 获取指定条件的数据
         /// </summary>
-        /// <param name="where"></param>
+        /// <param name="where">查询条件</param>
+        /// <param name="deletedDataType">删除数据范围</param>
+        /// <param name="enterpriseDataType">企业数据范围</param>
         /// <returns></returns>
         public virtual IQueryable<T> GetAll(Expression<Func<T, bool>> where, DeletedDataType deletedDataType = DeletedDataType.UnDeletedOnly, EnterpriseDataType enterpriseDataType = EnterpriseDataType.CurrentAndSubs)
         {
@@ -214,10 +216,10 @@ namespace  Wjw1.Infrastructure
         }
 
         /// <summary>
-        /// 获取用户所在企业数据
+        /// 获取指定范围的所有数据
         /// </summary>
-        /// <param name="containsDeleted">包含已删除数据</param>
-        /// <param name="allEnt">查询所有企业数据</param>
+        /// <param name="deletedDataType">删除数据范围</param>
+        /// <param name="enterpriseDataType">企业数据范围</param>
         /// <returns></returns>
         public virtual IQueryable<T> GetAll(DeletedDataType deletedDataType = DeletedDataType.UnDeletedOnly, EnterpriseDataType enterpriseDataType = EnterpriseDataType.CurrentAndSubs)
         {
