@@ -35,13 +35,8 @@ namespace Web
                         new SysEnterprise
                         {
                             Id = "100",
-                            EnterpriseName = "精一科技"//系统初始化为平台运营方
+                            EnterpriseName = "精一科技"//系统初始化为平台运营方,交付的客户公司在系统初始化时设置
                         },
-                        new SysEnterprise
-                        {
-                            Id = "100001",
-                            EnterpriseName = "测试企业"//系统测试用，系统交付客户公司名称
-                        }
                     };
                     
                     foreach (var sysEnterprise in sysEnterprises)
@@ -214,6 +209,14 @@ namespace Web
                         new SysController
                         {
                             SysAreaId = "Platform",
+                            Name = "企业架构",
+                            ControllerName = "SysEnterprise",
+                            SystemId = "900100",
+                            Ico = "fa-dot-circle-o"
+                        },
+                        new SysController
+                        {
+                            SysAreaId = "Platform",
                             Name = "组织架构",
                             ControllerName = "SysDepartment",
                             SystemId = "900200",
@@ -309,15 +312,27 @@ namespace Web
 
                         #endregion
                     };
-
                     foreach (var sysController in sysControllers)
-                        if (
-                            !db.SysControllers.AnyAsync(
-                                a =>
-                                    a.SysAreaId == sysController.SysAreaId &&
-                                    a.ControllerName == sysController.ControllerName).Result)
+                    {
+                        //添加新增的
+                        var sc = db.SysControllers.FirstOrDefaultAsync(a => a.SystemId.Equals(sysController.SystemId)).Result;
+                        if (sc==null)
+                        {
                             db.SysControllers.AddAsync(sysController).Wait();
+                        }
+                        else
+                        {
+                            //更新已存在的数据
+                            sc.SystemId = sysController.SystemId;
+                            sc.Name = sysController.Name;
+                            sc.ControllerName = sysController.ControllerName;
+                            sc.Parameter = sysController.Parameter;
+                            sc.SysAreaId = sysController.SysAreaId;
+                            sc.Display = sysController.Display;
 
+                            db.SysControllers.Update(sc);
+                        }
+                    }
                     #endregion
 
                     db.SaveChangesAsync().Wait();

@@ -10,9 +10,10 @@ using Wjw1.Module.Task.Models;
 namespace Web.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170529015247_LocalizatonModify0529")]
+    partial class LocalizatonModify0529
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.2")
@@ -444,40 +445,11 @@ namespace Web.Migrations
                         .ValueGeneratedOnAdd()
                         .HasMaxLength(450);
 
-                    b.Property<string>("CreatedBy")
-                        .HasMaxLength(450);
-
-                    b.Property<string>("CreatedDate")
-                        .IsRequired()
-                        .HasMaxLength(20);
-
-                    b.Property<string>("CreatedTime")
-                        .IsRequired()
-                        .HasMaxLength(16);
-
-                    b.Property<bool>("Deleted");
-
-                    b.Property<string>("EnterpriseId")
-                        .HasMaxLength(450);
-
                     b.Property<string>("EnterpriseName")
                         .IsRequired()
                         .HasMaxLength(200);
 
-                    b.Property<string>("Remark")
-                        .HasMaxLength(200);
-
-                    b.Property<string>("UpdatedBy")
-                        .HasMaxLength(450);
-
-                    b.Property<string>("UpdatedDate")
-                        .HasMaxLength(50);
-
                     b.HasKey("Id");
-
-                    b.HasIndex("CreatedBy");
-
-                    b.HasIndex("UpdatedBy");
 
                     b.ToTable("SysEnterprises");
                 });
@@ -1187,17 +1159,6 @@ namespace Web.Migrations
                         .WithMany("SysDepartmentSysUsers")
                         .HasForeignKey("SysUserId")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Wjw1.Infrastructure.Models.SysEnterprise", b =>
-                {
-                    b.HasOne("Wjw1.Infrastructure.Models.SysUser", "UserCreatedBy")
-                        .WithMany()
-                        .HasForeignKey("CreatedBy");
-
-                    b.HasOne("Wjw1.Infrastructure.Models.SysUser", "UserUpdatedBy")
-                        .WithMany()
-                        .HasForeignKey("UpdatedBy");
                 });
 
             modelBuilder.Entity("Wjw1.Infrastructure.Models.SysEnterpriseSysUser", b =>

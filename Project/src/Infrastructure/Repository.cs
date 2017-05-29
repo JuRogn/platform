@@ -198,7 +198,7 @@ namespace  Wjw1.Infrastructure
 
             var iEnterprise = item as IEnterprise;
 
-            if (iEnterprise != null && iEnterprise.EnterpriseId.StartsWith(_userInfo.EnterpriseId)) return null;
+            if (iEnterprise != null && !iEnterprise.EnterpriseId.StartsWith(_userInfo.EnterpriseId)) return null;
 
             return item;
         }

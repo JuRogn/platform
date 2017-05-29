@@ -14,6 +14,10 @@ namespace Wjw1.Module.Localization.Models
         [Display(Name ="Culture_Name"),Required(ErrorMessage = "Culture_Name_Required"),MaxLength(10,ErrorMessage = "Culture_Name_MaxLength")] //ErrorMessageResourceName = "Culture_Name_Required", ErrorMessageResourceType =typeof(Resource)
         public string Name { get; set; }
 
+
+        [Display(Name = "Culture_DisplayName"), Required(ErrorMessage = "Culture_DisplayName_Required"), MaxLength(100, ErrorMessage = "Culture_DisplayName_MaxLength")] //ErrorMessageResourceName = "Culture_Name_Required", ErrorMessageResourceType =typeof(Resource)
+        public string DisplayName { get; set; }
+
         [ScaffoldColumn(false)]
         public IList<Resource> Resources { get; set; }
     }

@@ -46,7 +46,12 @@ namespace Web.Areas.Platform.Controllers
         /// <returns></returns>
         public async Task<IActionResult> Index(string keyword, string ordering, int pageIndex = 1, bool report = false)
         {
-            var model = _iResourceService.GetAll();
+            var model = _iResourceService.GetAll().Select(a=>new {
+                Resource_Key =  a.Key,
+                Resource_Value = a.Value,
+                Resource_Culture = a.Culture.DisplayName,
+                a.Id
+            });
             model = !string.IsNullOrEmpty(ordering) ? model.OrderBy(ordering, null) : model.OrderBy(a => a.Id);
 
 
@@ -85,13 +90,13 @@ namespace Web.Areas.Platform.Controllers
         /// 编辑
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="finished"></param>
         /// <returns></returns>
         public async Task<IActionResult> Edit(string id)
         {
             var item = _iResourceService.GetById(id);
-            
-            ViewBag.CultureId = new SelectList(_iCultureService.GetAll().Select(a => new { a.Id, a.Name }), "Id", "Name", item.CultureId);
+            if (item == null)
+                item = new Resource();
+            ViewBag.CultureId = new SelectList(_iCultureService.GetAll().Select(a => new { a.Id, a.DisplayName }), "Id", "DisplayName", item.CultureId);
 
             return View(item);
         }

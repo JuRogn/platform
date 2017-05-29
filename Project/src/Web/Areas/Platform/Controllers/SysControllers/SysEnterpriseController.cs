@@ -1,41 +1,39 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Linq;
-using System.Linq.Dynamic.Core;
+﻿using System.Linq;
 using System.Threading.Tasks;
-
+using Microsoft.AspNetCore.Mvc;
+using Web.Areas.Platform.Helpers;
 using Wjw1.Infrastructure;
+using Wjw1.Infrastructure.Models;
 using Wjw1.Libarary.ModuleBaseLibrary.Extentions;
 using Wjw1.Libarary.Web;
-using Wjw1.Libarary.Web.ActionResults;
-using Wjw1.Module.Localization.Models;
-
-using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Web.Areas.Platform.Controllers
 {
     /// <summary>
-    /// 文化语言设置
+    /// 
     /// </summary>
     [Area("Platform")]
-    public class CultureController : Controller
+    public class SysEnterpriseController : Controller
     {
-        private readonly IRepository<Culture> _iCultureService;
+        private readonly IRepository<SysEnterprise> _SysEnterpriseService;
         private readonly IUserInfo _iUserInfo;
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="unitOfWork"></param>
-        /// <param name="iCultureService"></param>
-        /// <param name="iUserInfo"></param>
-        public CultureController(IRepository<Resource> iResourceService, IRepository<Culture> iCultureService, IUserInfo iUserInfo)
+        public SysEnterpriseController(IRepository<SysEnterprise> SysEnterpriseService
+            , IUserInfo iUserInfo)
         {
-            _iCultureService = iCultureService;
+            _SysEnterpriseService = SysEnterpriseService;
             _iUserInfo = iUserInfo;
         }
 
+
+
+        //
+        // GET: /Platform/SysEnterprise/
+
         /// <summary>
-        /// 列表
+        /// 
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="ordering"></param>
@@ -44,13 +42,13 @@ namespace Web.Areas.Platform.Controllers
         /// <returns></returns>
         public async Task<IActionResult> Index(string keyword, string ordering, int pageIndex = 1, bool report = false)
         {
-            var model = _iCultureService.GetAll().Select(a=>new {
-                Culture_Name = a.Name,
-                Culture_DisplayName = a.DisplayName,
-                a.Id
-            });
-            model = !string.IsNullOrEmpty(ordering) ? model.OrderBy(ordering, null) : model.OrderBy(a => a.Id);
-
+            var model = _SysEnterpriseService.GetAll(DeletedDataType.All)
+                                     .Select(a =>new
+                                         {
+                                             a.EnterpriseName,
+                                             a.Id
+                                         })
+                                    .OrderBy(a=>a.Id);
 
             if (report)
             {
@@ -60,19 +58,22 @@ namespace Web.Areas.Platform.Controllers
             return View(model.ToPagedList(pageIndex));
         }
 
+        //
+        // GET: /Platform/SysEnterprise/Details/5
+
         /// <summary>
-        /// 查看
+        /// 
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         public async Task<IActionResult> Details(string id)
         {
-            var item = _iCultureService.GetById(id);
+            var item = _SysEnterpriseService.GetById(id);
             return View(item);
         }
 
         /// <summary>
-        /// 创建
+        /// 
         /// </summary>
         /// <returns></returns>
         public async Task<IActionResult> Create()
@@ -81,64 +82,69 @@ namespace Web.Areas.Platform.Controllers
         }
 
         //
-        // GET: /Platform/Resource/Edit/5
+        // GET: /Platform/SysEnterprise/Edit/5
 
         /// <summary>
-        /// 编辑
+        /// 
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="finished"></param>
         /// <returns></returns>
         public async Task<IActionResult> Edit(string id)
         {
-            var item = _iCultureService.GetById(id);
-            if (item == null)
-                item = new Culture();
+            var item = new SysEnterprise();
+            if (!string.IsNullOrEmpty(id))
+            {
+                item = _SysEnterpriseService.GetById(id);
+            }
             return View(item);
         }
 
+        //
+        // POST: /Platform/SysEnterprise/Edit/5
 
         /// <summary>
-        /// 保存
+        /// 
         /// </summary>
         /// <param name="id"></param>
         /// <param name="collection"></param>
         /// <returns></returns>
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, Culture collection)
+        public async Task<IActionResult> Edit(string id, SysEnterprise collection)
         {
             if (!ModelState.IsValid)
             {
                 await Edit(id);
                 return View(collection);
             }
+            //只能创建下级企业，ID自动分配
+            if (string.IsNullOrEmpty(id))
+            {
+                var curEntId = _iUserInfo.EnterpriseId;
+                collection.Id =curEntId+ (_SysEnterpriseService.GetAll(DeletedDataType.All).Count(a => a.Id.StartsWith(curEntId) && a.Id.Length.Equals(curEntId.Length + 3))+1).ToString().PadLeft(3,'0');
+            }
+            _SysEnterpriseService.Save(id, collection);
 
-
-            _iCultureService.Save(id, collection);
-
-            await _iCultureService.CommitAsync();
+            await _SysEnterpriseService.CommitAsync();
 
             return new EditSuccessResult(id);
         }
 
+        //
+        // POST: /Platform/SysEnterprise/Delete/5
 
         /// <summary>
-        /// 删除
+        /// 
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         //[HttpDelete]
         public async Task<IActionResult> Delete(string id)
         {
-            var item = _iCultureService.GetById(id);
+            _SysEnterpriseService.Delete(id);
 
-            _iCultureService.Delete(id);
-
-            await _iCultureService.CommitAsync();
-
+            await _SysEnterpriseService.CommitAsync();
+           
             return new DeleteSuccessResult();
         }
-        
     }
 }

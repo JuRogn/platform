@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Wjw1.Infrastructure.Models
 {
-    public class SysEnterprise : DbSetId
+    public class SysEnterprise : DbSetBase
     {
 
         [MaxLength(200)]
