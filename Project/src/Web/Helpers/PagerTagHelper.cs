@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Globalization;
-using System.Linq;
+﻿using System.Collections;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -30,7 +27,13 @@ namespace Web
         public ViewContext ViewContext { get; set; }
 
         public IEnumerable PagerOption { get; set; }
-
+        /// <summary>
+        /// Ajax
+        /// </summary>
+        public bool PagerAjax { get; set; } = false;
+        /// <summary>
+        /// Target id to be updated 
+        /// </summary>
         public string PagerAjaxUpdate { get; set; }
 
         public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
@@ -41,7 +44,7 @@ namespace Web
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
 
-            if (string.IsNullOrEmpty(PagerAjaxUpdate))
+            if (PagerAjax && string.IsNullOrEmpty(PagerAjaxUpdate))
             {
                 PagerAjaxUpdate = "#Main";
             }
@@ -98,18 +101,18 @@ namespace Web
             {
                 vs["pageIndex"] = 1;
 
-                sbPage.AppendFormat("<li><a href=\"{0}\" aria-label=\"Previous\" data-ajax=\"true\" data-ajax-mode=\"replace\" data-ajax-update=\"" + PagerAjaxUpdate + "\"><span aria-hidden=\"true\">|<</span></a></li>", urlHelper.Action("",  vs));
+                sbPage.AppendFormat("<li><a href=\"{0}\" aria-label=\"Previous\" " + (PagerAjax ? "data-ajax=\"true\" data-ajax-mode=\"replace\" data-ajax-update=\"" + PagerAjaxUpdate : " ") + "\"><span aria-hidden=\"true\">|<</span></a></li>", urlHelper.Action("",  vs));
 
                 vs["pageIndex"] = model.PageIndex - 1 <= 0 ? 1 : model.PageIndex - 1;
 
-                sbPage.AppendFormat("<li><a href=\"{0}\" aria-label=\"Previous\" data-ajax=\"true\" data-ajax-mode=\"replace\" data-ajax-update=\"" + PagerAjaxUpdate + "\"><span aria-hidden=\"true\"><</span></a></li>", urlHelper.Action("", vs));
+                sbPage.AppendFormat("<li><a href=\"{0}\" aria-label=\"Previous\"  " + (PagerAjax ? "data-ajax=\"true\" data-ajax-mode=\"replace\" data-ajax-update=\"" + PagerAjaxUpdate : " ") + "\"><span aria-hidden=\"true\"><</span></a></li>", urlHelper.Action("", vs));
             }
 
             for (var i = start; i <= end; i++)
             {
                 vs["pageIndex"] = i;
 
-                sbPage.AppendFormat("<li {1}><a  href=\"{2}\"  data-ajax=\"true\" data-ajax-mode=\"replace\" data-ajax-update=\"" + PagerAjaxUpdate + "\">{0}</a></li>",
+                sbPage.AppendFormat("<li {1}><a  href=\"{2}\"   " + (PagerAjax ? "data-ajax=\"true\" data-ajax-mode=\"replace\" data-ajax-update=\"" + PagerAjaxUpdate : " ") + "\">{0}</a></li>",
                     i,
                     i == model.PageIndex ? "class=\"active\"" : "",
                     urlHelper.Action("", vs));
@@ -119,11 +122,11 @@ namespace Web
             {
                 vs["pageIndex"] = model.PageIndex + 1 > model.TotalCount ? model.PageIndex : model.PageIndex + 1;
 
-                sbPage.AppendFormat("<li><a href=\"{0}\" aria-label=\"Next\"  data-ajax=\"true\" data-ajax-mode=\"replace\" data-ajax-update=\"" + PagerAjaxUpdate + "\"><span aria-hidden=\"true\">></span></a></li>", urlHelper.Action("", vs));
+                sbPage.AppendFormat("<li><a href=\"{0}\" aria-label=\"Next\" " + (PagerAjax ? "data-ajax=\"true\" data-ajax-mode=\"replace\" data-ajax-update=\"" + PagerAjaxUpdate : " ") + "\"><span aria-hidden=\"true\">></span></a></li>", urlHelper.Action("", vs));
 
                 vs["pageIndex"] = totalPage;
 
-                sbPage.AppendFormat("<li><a href=\"{0}\" aria-label=\"Next\"  data-ajax=\"true\" data-ajax-mode=\"replace\" data-ajax-update=\"" + PagerAjaxUpdate + "\"><span aria-hidden=\"true\">>|</span></a></li>", urlHelper.Action("",vs));
+                sbPage.AppendFormat("<li><a href=\"{0}\" aria-label=\"Next\"   " + (PagerAjax ? "data-ajax=\"true\" data-ajax-mode=\"replace\" data-ajax-update=\"" + PagerAjaxUpdate : " ") + "\"><span aria-hidden=\"true\">>|</span></a></li>", urlHelper.Action("",vs));
             }
 
             sbPage.Append("<li>");
@@ -133,7 +136,7 @@ namespace Web
             vs["pageIndex"] = 1;
 
             sbPage.Append("<form action=\"" + urlHelper.Action("", vs) +
-                           "\" data-ajax=\"true\"  data-ajax-mode=\"replace\" data-ajax-update=\"" + PagerAjaxUpdate + "\" id=\"form1\" method=\"post\" >");
+                           "\"  " + (PagerAjax ? "data-ajax=\"true\" data-ajax-mode=\"replace\" data-ajax-update=\"" + PagerAjaxUpdate : " ") + "\" id=\"form1\" method=\"post\" >");
 
             sbPage.Append("每页" + model.PageSize + "条/共" + model.TotalCount + "条 第");
 
