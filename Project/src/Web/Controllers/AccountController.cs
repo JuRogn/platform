@@ -161,7 +161,7 @@ namespace Web.Controllers
                         _iSysEnterpriseSysUserService.Save(null, new SysEnterpriseSysUser() { SysEnterpriseId = "100", SysUserId = user.Id });
 
                         // 添加超级用户
-                        user.Roles.Add(new IdentityUserRole<string>() { RoleId = "SuperAdmin" });
+                        user.Roles.Add(new IdentityUserRole<string>() { RoleId = "SuperAdmin",UserId=user.Id });
 
                         await _iSysEnterpriseSysUserService.CommitAsync();//_unitOfWork.CommitAsync();
                     }
