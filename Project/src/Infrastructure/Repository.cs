@@ -8,25 +8,6 @@ using System.Linq.Dynamic.Core;
 
 namespace  Wjw1.Infrastructure
 {
-
-    /// <summary>
-    /// 企业数据查询类型
-    /// </summary>
-    public enum EnterpriseDataType
-    {
-        /// <summary>
-        /// 查看本公司及下级子公司数据，超级管理员能查看所有数据
-        /// </summary>
-        CurrentAndSubs = 100,
-        /// <summary>
-        /// 只能查看本级公司数据
-        /// </summary>
-        CurrentOnly = 200,     
-        /// <summary>
-        /// 查看所属总公司的所有数据 ，前六位编码一致
-        /// </summary>
-        All=300
-    }
     /// <summary>
     /// 数据库操作
     /// </summary>
