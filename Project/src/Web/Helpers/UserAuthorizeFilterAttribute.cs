@@ -39,6 +39,7 @@ namespace Web.Helpers
 
             if (string.IsNullOrEmpty(area) || iSysAreaService == null || !iSysAreaService.GetAll(a => a.AreaName == area).Any()) return Task.FromResult(0);
 
+            //从Cookie中读出，如果用户已经不存在需要重新登录
             if (!context.HttpContext.User.Identity.IsAuthenticated) return base.OnAuthorizationAsync(context);
 
             //判断当前用户权限
@@ -47,7 +48,11 @@ namespace Web.Helpers
 
             var sysRoleService = context.HttpContext.RequestServices.GetService(typeof(IRepository<SysRole>)) as Repository<SysRole>;
             var userInfo = context.HttpContext.RequestServices.GetService(typeof(IUserInfo)) as IUserInfo;
-
+            if(string.IsNullOrEmpty(userInfo.UserId))
+            {
+                //？需要注销当前用户？
+                return base.OnAuthorizationAsync(context);
+            }
             if (userInfo != null && sysRoleService != null && sysRoleService.GetAll(a => a.Users.Any(b => b.UserId.Equals(userInfo.UserId)) &&
                                        a.SysRoleSysControllerSysActions.Any(b => b.SysControllerSysAction.SysController.SysArea.AreaName.Equals(area) &&
                                                b.SysControllerSysAction.SysController.ControllerName.Equals(controller) &&

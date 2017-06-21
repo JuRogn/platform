@@ -155,15 +155,14 @@ namespace Web.Controllers
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    if (_userManager.Users.Count() <= 1)
+                    if (_userManager.Users.Count() == 1)//平台注册的第一个用户为最高管理员
                     {
                         // 关联到平台运营企业或者总公司
                         _iSysEnterpriseSysUserService.Save(null, new SysEnterpriseSysUser() { SysEnterpriseId = "100", SysUserId = user.Id });
-
+                        await _iSysEnterpriseSysUserService.CommitAsync();//_unitOfWork.CommitAsync();
                         // 添加超级用户
                         user.Roles.Add(new IdentityUserRole<string>() { RoleId = "SuperAdmin",UserId=user.Id });
-
-                        await _iSysEnterpriseSysUserService.CommitAsync();//_unitOfWork.CommitAsync();
+                        await _userManager.UpdateAsync(user);
                     }
                     else
                     {

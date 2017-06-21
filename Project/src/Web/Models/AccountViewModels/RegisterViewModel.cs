@@ -9,7 +9,7 @@ namespace Web.Models.AccountViewModels
     public class RegisterViewModel
     {
         [UIHint("HiddenInput")]
-        public string EnterpriseId { get; set; }
+        public string EnterpriseId { get; set; } = "100"; //默认全站用户
 
         [Required]
         [EmailAddress]
