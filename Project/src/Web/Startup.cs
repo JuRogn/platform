@@ -55,14 +55,14 @@ namespace Web
             // 所谓的连接弹性则是执行数据库命令失败时我们可以重试
             // Add framework services.
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),b=>b.EnableRetryOnFailure()
-                .MigrationsAssembly("Web")
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")
+                ,b=>b.MigrationsAssembly("Web")                
                 ));
 
             services.AddIdentity<SysUser, SysRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
-
+                
             // SQL Server 缓存数据
             services.AddDistributedSqlServerCache(
                 a =>
@@ -86,7 +86,7 @@ namespace Web
             //作用域（Scoped）生命周期服务在每次请求被创建一次。
             //单例（Singleton）生命周期服务在它们第一次被请求时创建（或者如果你在 ConfigureServices运行时指定一个实例）并且每个后续请求将使用相同的实例。如果你的应用程序需要单例行为，建议让服务容器管理服务的生命周期而不是在自己的类中实现单例模式和管理对象的生命周期。
 
-            services.AddTransient(typeof(ApplicationDbContext));
+            //services.AddTransient(typeof(ApplicationDbContext));
             //多语言包支持
             services.AddSingleton<IStringLocalizer, EfStringLocalizer>();
             services.AddSingleton<IStringLocalizerFactory, EfStringLocalizerFactory>();
@@ -115,7 +115,6 @@ namespace Web
             services.AddOptions();
 
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
-
             return services.Build(Configuration, _env);
         }
         
@@ -179,16 +178,14 @@ namespace Web
                 SupportedUICultures = supportedCultures
             });
 
-            // 
-            app.UseIdentity();
 
             // 初始化数据
             app.UseDataBaseInitializer();
             
-
-
+            // 
+            //app.UseIdentity();
+            app.UseAuthentication();
             // Add external authentication middleware below. To configure them please see https://go.microsoft.com/fwlink/?LinkID=532715
-
             app.UseMvc(routes =>
             {
                 routes.MapRoute("areaRoute",

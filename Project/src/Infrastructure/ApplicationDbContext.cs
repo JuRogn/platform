@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System;
 using System.Linq;
 using System.Reflection;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace  Wjw1.Infrastructure
 {
@@ -162,4 +163,5 @@ namespace  Wjw1.Infrastructure
         #endregion
         
     }
+
 }

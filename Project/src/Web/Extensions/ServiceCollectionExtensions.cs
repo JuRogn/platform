@@ -36,26 +36,32 @@ namespace Web.Extensions
             //        continue;
             //    }
 
-                foreach (var file in binFolder.GetFileSystemInfos("*.dll", SearchOption.AllDirectories))
+            foreach (var file in binFolder.GetFileSystemInfos("*.dll", SearchOption.AllDirectories))
+            {
+                if (!file.FullName.Contains("e_sqlite3"))//file.FullName.Contains("Wjw1.Module"))
                 {
                     Assembly assembly;
                     try
                     {
                         assembly = AssemblyLoadContext.Default.LoadFromAssemblyPath(file.FullName);
                     }
-                    catch (FileLoadException)
+                    catch (FileLoadException e)
                     {
                         // Get loaded assembly
                         assembly = Assembly.Load(new AssemblyName(Path.GetFileNameWithoutExtension(file.Name)));
 
                         if (assembly == null)
                         {
-                            throw;
+                            throw new Exception("Load assembly failed.", e);
                         }
                     }
-
-                    if (assembly.FullName.Contains("Wjw1.Module."))
+                    catch (Exception e)
                     {
+                        throw e;
+                    }
+
+                    if (file.FullName.Contains("Wjw1.Module"))
+                    { 
                         modules.Add(new ModuleInfo
                         {
                             Name = assembly.FullName,
@@ -64,6 +70,7 @@ namespace Web.Extensions
                         });
                     }
                 }
+            }
             //}
 
             GlobalConfiguration.Modules = modules;
