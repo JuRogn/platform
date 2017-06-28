@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Runtime.Loader;
+using Microsoft.EntityFrameworkCore;
 
 namespace Web.Extensions
 {
@@ -19,13 +20,12 @@ namespace Web.Extensions
         /// 加载功能模块程序集
         /// </summary>
         /// <param name="services"></param>
-        /// <param name="modules"></param>
         /// <param name="hostingEnvironment"></param>
         /// <returns></returns>
-        public static IServiceCollection LoadInstalledModules(this IServiceCollection services,
-    IList<ModuleInfo> modules, IHostingEnvironment hostingEnvironment)
+        public static IServiceCollection LoadInstalledModules(this IServiceCollection services,string contentRootPath)
         {
-            var moduleRootFolder = new DirectoryInfo(Path.Combine(hostingEnvironment.ContentRootPath, "bin"));//"bin/debug/netcoreapp.1.1"
+            var modules = new List<ModuleInfo>();
+            var moduleRootFolder = new DirectoryInfo(Path.Combine(contentRootPath, "bin"));//"bin/debug/netcoreapp.1.1"
             //var moduleFolders = moduleRootFolder.GetDirectories();
             var binFolder = moduleRootFolder;//
             //foreach (var moduleFolder in moduleFolders)
@@ -74,6 +74,13 @@ namespace Web.Extensions
             //}
 
             GlobalConfiguration.Modules = modules;
+            return services;
+        }
+        public static IServiceCollection AddCustomizedDataStore(this IServiceCollection services, IConfigurationRoot configuration)
+        {
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"),
+                    b => b.MigrationsAssembly("Web")));
             return services;
         }
         public static IServiceProvider Build(this IServiceCollection services,

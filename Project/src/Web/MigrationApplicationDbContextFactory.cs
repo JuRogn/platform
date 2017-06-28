@@ -6,6 +6,8 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Wjw1.Infrastructure;
+using Web.Extensions;
+using System.Collections.Generic;
 
 namespace Web
 {
@@ -15,7 +17,7 @@ namespace Web
         {
             var environmentName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 
-            var contentRootPath = Directory.GetCurrentDirectory();
+            var contentRootPath = AppContext.BaseDirectory.Remove(AppContext.BaseDirectory.IndexOf("bin"));//Directory.GetCurrentDirectory();
 
             var builder = new ConfigurationBuilder()
                             .SetBasePath(contentRootPath)

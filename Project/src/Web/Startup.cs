@@ -49,16 +49,12 @@ namespace Web
         {
             GlobalConfiguration.WebRootPath = _env.WebRootPath;
             GlobalConfiguration.ContentRootPath = _env.ContentRootPath;
-            services.LoadInstalledModules(Modules, _env);
+            services.LoadInstalledModules(_env.ContentRootPath);//Modules, _env);
 
             // 连接弹性（Connection resiliency） 
             // 所谓的连接弹性则是执行数据库命令失败时我们可以重试
             // Add framework services.
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")
-                ,b=>b.MigrationsAssembly("Web")                
-                ));
-
+            services.AddCustomizedDataStore(Configuration);
             services.AddIdentity<SysUser, SysRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
