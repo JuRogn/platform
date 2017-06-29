@@ -50,9 +50,7 @@ namespace Web
             GlobalConfiguration.WebRootPath = _env.WebRootPath;
             GlobalConfiguration.ContentRootPath = _env.ContentRootPath;
             services.LoadInstalledModules(_env.ContentRootPath);//Modules, _env);
-
-            // 连接弹性（Connection resiliency） 
-            // 所谓的连接弹性则是执行数据库命令失败时我们可以重试
+            
             // Add framework services.
             services.AddCustomizedDataStore(Configuration);
             services.AddIdentity<SysUser, SysRole>()
@@ -119,6 +117,7 @@ namespace Web
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddConsole((c, l) => l >= LogLevel.Trace);
+            
             //loggerFactory.AddConsole((c, l) => l >= LogLevel.Information);
             //loggerFactory.AddConsole(Configuration.GetSection("Logging"));
 
@@ -178,8 +177,6 @@ namespace Web
             // 初始化数据
             app.UseDataBaseInitializer();
             
-            // 
-            //app.UseIdentity();
             app.UseAuthentication();
             // Add external authentication middleware below. To configure them please see https://go.microsoft.com/fwlink/?LinkID=532715
             app.UseMvc(routes =>
