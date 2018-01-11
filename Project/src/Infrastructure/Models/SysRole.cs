@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Identity;
 
 namespace Wjw1.Infrastructure.Models
 {
@@ -28,5 +29,24 @@ namespace Wjw1.Infrastructure.Models
         [MaxLength(256)]
         [ScaffoldColumn(false)]
         public string EnterpriseId { get; set; }
+
+        [ScaffoldColumn(false)]
+        public ICollection<SysUserRole> SysUserRoles { get; set; } = new List<SysUserRole>();
+    }
+
+    public class SysUserRole : IdentityUserRole<string>
+    {
+        public string SysUserId { get; set; }
+
+        public string SysRoleId { get; set; }
+
+        public override string UserId { get { return base.UserId; } set { base.UserId = value;SysUserId = value; } }
+
+        public override string RoleId { get { return base.RoleId; }set { base.RoleId = value;SysRoleId = value; } }
+
+        [ScaffoldColumn(false),ForeignKey("SysUserId")]
+        public SysUser SysUser { get; set; }
+        [ScaffoldColumn(false),ForeignKey("SysRoleId")]
+        public SysRole SysRole { get; set; }
     }
 }

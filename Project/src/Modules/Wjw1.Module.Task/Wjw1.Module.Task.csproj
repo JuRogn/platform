@@ -5,13 +5,19 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\ModuleBaseLibrary\Wjw1.Libarary.ModuleBaseLibrary.csproj" />
+    <Compile Remove="Controllers\**" />
+    <Compile Remove="IServices\**" />
+    <Compile Remove="Services\**" />
+    <EmbeddedResource Remove="Controllers\**" />
+    <EmbeddedResource Remove="IServices\**" />
+    <EmbeddedResource Remove="Services\**" />
+    <None Remove="Controllers\**" />
+    <None Remove="IServices\**" />
+    <None Remove="Services\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="IServices\" />
-    <Folder Include="Services\" />
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\..\ModuleBaseLibrary\Wjw1.Libarary.ModuleBaseLibrary.csproj" />
   </ItemGroup>
 
 </Project>

@@ -8,7 +8,7 @@
       <UserSecretsId>aspnet-Web-c2f70de0-3c34-40e9-902b-7ce23e14f75d</UserSecretsId>
     </PropertyGroup>
   <PropertyGroup>
-    <PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wp8+wpa81;</PackageTargetFallback>
+    <AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
     <ApplicationIcon />
     <OutputType>Exe</OutputType>
     <StartupObject />
@@ -24,9 +24,29 @@
 
   <ItemGroup>
     <Compile Remove="Areas\Platform\**" />
+    <Compile Remove="wwwroot\css\**" />
+    <Compile Remove="wwwroot\images\**" />
+    <Compile Remove="wwwroot\js\**" />
+    <Compile Remove="wwwroot\lib\**" />
+    <Compile Remove="wwwroot\master\**" />
     <Content Remove="Areas\Platform\**" />
+    <Content Remove="wwwroot\css\**" />
+    <Content Remove="wwwroot\images\**" />
+    <Content Remove="wwwroot\js\**" />
+    <Content Remove="wwwroot\lib\**" />
+    <Content Remove="wwwroot\master\**" />
     <EmbeddedResource Remove="Areas\Platform\**" />
+    <EmbeddedResource Remove="wwwroot\css\**" />
+    <EmbeddedResource Remove="wwwroot\images\**" />
+    <EmbeddedResource Remove="wwwroot\js\**" />
+    <EmbeddedResource Remove="wwwroot\lib\**" />
+    <EmbeddedResource Remove="wwwroot\master\**" />
     <None Remove="Areas\Platform\**" />
+    <None Remove="wwwroot\css\**" />
+    <None Remove="wwwroot\images\**" />
+    <None Remove="wwwroot\js\**" />
+    <None Remove="wwwroot\lib\**" />
+    <None Remove="wwwroot\master\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -53,280 +73,33 @@
     <Compile Include="Areas\Platform\Controllers\SysControllers\SysUserLogController.cs" />
     <Compile Include="Areas\Platform\Controllers\SysHelpControllers\SysHelpClassController.cs" />
   </ItemGroup>
-
   <ItemGroup>
-    <Content Include="wwwroot\css\app.css" />
-    <Content Include="wwwroot\css\bootstrap.css" />
-    <Content Include="wwwroot\css\theme-a.css" />
-    <Content Include="wwwroot\css\theme-b.css" />
-    <Content Include="wwwroot\css\theme-c.css" />
-    <Content Include="wwwroot\css\theme-d.css" />
-    <Content Include="wwwroot\css\theme-e.css" />
-    <Content Include="wwwroot\css\theme-f.css" />
-    <Content Include="wwwroot\css\theme-g.css" />
-    <Content Include="wwwroot\css\theme-h.css" />
-    <Content Include="wwwroot\images\ASP-NET-Banners-01.png" />
-    <Content Include="wwwroot\images\ASP-NET-Banners-02.png" />
-    <Content Include="wwwroot\images\Banner-01-Azure.png" />
-    <Content Include="wwwroot\images\Banner-02-VS.png" />
-    <Content Include="wwwroot\images\bg1.jpg" />
-    <Content Include="wwwroot\images\bg10.jpg" />
-    <Content Include="wwwroot\images\bg2.jpg" />
-    <Content Include="wwwroot\images\bg3.jpg" />
-    <Content Include="wwwroot\images\bg4.jpg" />
-    <Content Include="wwwroot\images\bg5.jpg" />
-    <Content Include="wwwroot\images\bg6.jpg" />
-    <Content Include="wwwroot\images\bg7.jpg" />
-    <Content Include="wwwroot\images\bg8.jpg" />
-    <Content Include="wwwroot\images\bg9.jpg" />
-    <Content Include="wwwroot\images\bootstrap-colorpicker\alpha-horizontal.png" />
-    <Content Include="wwwroot\images\bootstrap-colorpicker\alpha.png" />
-    <Content Include="wwwroot\images\bootstrap-colorpicker\hue-horizontal.png" />
-    <Content Include="wwwroot\images\bootstrap-colorpicker\hue.png" />
-    <Content Include="wwwroot\images\bootstrap-colorpicker\saturation.png" />
-    <Content Include="wwwroot\images\dummy.png" />
-    <Content Include="wwwroot\images\lock-bg.jpg" />
-    <Content Include="wwwroot\images\logo-single.png" />
-    <Content Include="wwwroot\images\logo.png" />
-    <Content Include="wwwroot\images\mb-sample.jpg" />
-    <Content Include="wwwroot\images\mockup.png" />
-    <Content Include="wwwroot\images\profile-bg.jpg" />
-    <Content Include="wwwroot\images\user\01.jpg" />
-    <Content Include="wwwroot\images\user\02.jpg" />
-    <Content Include="wwwroot\images\user\03.jpg" />
-    <Content Include="wwwroot\images\user\04.jpg" />
-    <Content Include="wwwroot\images\user\05.jpg" />
-    <Content Include="wwwroot\images\user\06.jpg" />
-    <Content Include="wwwroot\images\user\07.jpg" />
-    <Content Include="wwwroot\images\user\08.jpg" />
-    <Content Include="wwwroot\images\user\09.jpg" />
-    <Content Include="wwwroot\images\user\10.jpg" />
-    <Content Include="wwwroot\images\user\11.jpg" />
-    <Content Include="wwwroot\images\user\12.jpg" />
-    <Content Include="wwwroot\images\user\13.jpg" />
-    <Content Include="wwwroot\lib\jquery-ajax-unobtrusive\.bower.json" />
-    <Content Include="wwwroot\lib\jquery-ajax-unobtrusive\bower.json" />
-    <Content Include="wwwroot\lib\jquery-ajax-unobtrusive\gulpfile.js" />
-    <Content Include="wwwroot\lib\jquery-ajax-unobtrusive\jquery.unobtrusive-ajax.js" />
-    <Content Include="wwwroot\lib\jquery-ajax-unobtrusive\jquery.unobtrusive-ajax.min.js" />
-    <Content Include="wwwroot\lib\jquery-ajax-unobtrusive\LICENSE.txt" />
-    <Content Include="wwwroot\master\js\app.init.js" />
-    <Content Include="wwwroot\master\js\custom\custom.js" />
-    <Content Include="wwwroot\master\js\modules\bootstrap-start.js" />
-    <Content Include="wwwroot\master\js\modules\calendar.js" />
-    <Content Include="wwwroot\master\js\modules\chart-easypie.js" />
-    <Content Include="wwwroot\master\js\modules\chart-knob.js" />
-    <Content Include="wwwroot\master\js\modules\chart.js" />
-    <Content Include="wwwroot\master\js\modules\chartist.js" />
-    <Content Include="wwwroot\master\js\modules\classyloader.js" />
-    <Content Include="wwwroot\master\js\modules\clear-storage.js" />
-    <Content Include="wwwroot\master\js\modules\color-picker.js" />
-    <Content Include="wwwroot\master\js\modules\constants.js" />
-    <Content Include="wwwroot\master\js\modules\demo\demo-datatable.js" />
-    <Content Include="wwwroot\master\js\modules\demo\demo-flot.js" />
-    <Content Include="wwwroot\master\js\modules\demo\demo-forms.js" />
-    <Content Include="wwwroot\master\js\modules\demo\demo-jqcloud.js" />
-    <Content Include="wwwroot\master\js\modules\demo\demo-jqgrid.js" />
-    <Content Include="wwwroot\master\js\modules\demo\demo-nestable.js" />
-    <Content Include="wwwroot\master\js\modules\demo\demo-panels.js" />
-    <Content Include="wwwroot\master\js\modules\demo\demo-rtl.js" />
-    <Content Include="wwwroot\master\js\modules\demo\demo-search.js" />
-    <Content Include="wwwroot\master\js\modules\demo\demo-sortable.js" />
-    <Content Include="wwwroot\master\js\modules\demo\demo-upload.js" />
-    <Content Include="wwwroot\master\js\modules\demo\demo-vector-map.js" />
-    <Content Include="wwwroot\master\js\modules\demo\demo-wizard.js" />
-    <Content Include="wwwroot\master\js\modules\demo\demo-xeditable.js" />
-    <Content Include="wwwroot\master\js\modules\flatdoc.js" />
-    <Content Include="wwwroot\master\js\modules\fullscreen.js" />
-    <Content Include="wwwroot\master\js\modules\gmap.js" />
-    <Content Include="wwwroot\master\js\modules\imagecrop.js" />
-    <Content Include="wwwroot\master\js\modules\load-css.js" />
-    <Content Include="wwwroot\master\js\modules\localize.js" />
-    <Content Include="wwwroot\master\js\modules\maps-vector.js" />
-    <Content Include="wwwroot\master\js\modules\morris.js" />
-    <Content Include="wwwroot\master\js\modules\navbar-search.js" />
-    <Content Include="wwwroot\master\js\modules\notify.js" />
-    <Content Include="wwwroot\master\js\modules\now.js" />
-    <Content Include="wwwroot\master\js\modules\panel-tools.js" />
-    <Content Include="wwwroot\master\js\modules\play-animation.js" />
-    <Content Include="wwwroot\master\js\modules\porlets.js" />
-    <Content Include="wwwroot\master\js\modules\rickshaw.js" />
-    <Content Include="wwwroot\master\js\modules\select2.js" />
-    <Content Include="wwwroot\master\js\modules\sidebar.js" />
-    <Content Include="wwwroot\master\js\modules\skycons.js" />
-    <Content Include="wwwroot\master\js\modules\slimscroll.js" />
-    <Content Include="wwwroot\master\js\modules\sparkline.js" />
-    <Content Include="wwwroot\master\js\modules\sweetalert.js" />
-    <Content Include="wwwroot\master\js\modules\table-checkall.js" />
-    <Content Include="wwwroot\master\js\modules\toggle-state.js" />
-    <Content Include="wwwroot\master\js\modules\tour.js" />
-    <Content Include="wwwroot\master\js\modules\utils.js" />
-    <Content Include="wwwroot\master\sass\app.scss" />
-    <Content Include="wwwroot\master\sass\app\alerts.scss" />
-    <Content Include="wwwroot\master\sass\app\animate.scss" />
-    <Content Include="wwwroot\master\sass\app\bootstrap-reset.scss" />
-    <Content Include="wwwroot\master\sass\app\breadcrumbs.scss" />
-    <Content Include="wwwroot\master\sass\app\button-extra.scss" />
-    <Content Include="wwwroot\master\sass\app\calendar.scss" />
-    <Content Include="wwwroot\master\sass\app\chart-easypie.scss" />
-    <Content Include="wwwroot\master\sass\app\chart-flot.scss" />
-    <Content Include="wwwroot\master\sass\app\circles.scss" />
-    <Content Include="wwwroot\master\sass\app\datatable.scss" />
-    <Content Include="wwwroot\master\sass\app\docs.scss" />
-    <Content Include="wwwroot\master\sass\app\dropdown-extra.scss" />
-    <Content Include="wwwroot\master\sass\app\form-elements.scss" />
-    <Content Include="wwwroot\master\sass\app\form-imgcrop.scss" />
-    <Content Include="wwwroot\master\sass\app\form-tags.scss" />
-    <Content Include="wwwroot\master\sass\app\form-validation.scss" />
-    <Content Include="wwwroot\master\sass\app\form-wizard.scss" />
-    <Content Include="wwwroot\master\sass\app\gmap.scss" />
-    <Content Include="wwwroot\master\sass\app\half-float.scss" />
-    <Content Include="wwwroot\master\sass\app\jqgrid.scss" />
-    <Content Include="wwwroot\master\sass\app\layout-animation.scss" />
-    <Content Include="wwwroot\master\sass\app\layout-extra.scss" />
-    <Content Include="wwwroot\master\sass\app\layout.scss" />
-    <Content Include="wwwroot\master\sass\app\mailbox.scss" />
-    <Content Include="wwwroot\master\sass\app\masonry-grid.scss" />
-    <Content Include="wwwroot\master\sass\app\media-queries.scss" />
-    <Content Include="wwwroot\master\sass\app\nestable.scss" />
-    <Content Include="wwwroot\master\sass\app\notify.scss" />
-    <Content Include="wwwroot\master\sass\app\offsidebar.scss" />
-    <Content Include="wwwroot\master\sass\app\panels.scss" />
-    <Content Include="wwwroot\master\sass\app\placeholder.scss" />
-    <Content Include="wwwroot\master\sass\app\plans.scss" />
-    <Content Include="wwwroot\master\sass\app\plugins.scss" />
-    <Content Include="wwwroot\master\sass\app\portlets.scss" />
-    <Content Include="wwwroot\master\sass\app\print.scss" />
-    <Content Include="wwwroot\master\sass\app\progress-extra.scss" />
-    <Content Include="wwwroot\master\sass\app\radial-bar.scss" />
-    <Content Include="wwwroot\master\sass\app\row-extra.scss" />
-    <Content Include="wwwroot\master\sass\app\settings.scss" />
-    <Content Include="wwwroot\master\sass\app\sidebar.scss" />
-    <Content Include="wwwroot\master\sass\app\slim-scroll.scss" />
-    <Content Include="wwwroot\master\sass\app\spinner.scss" />
-    <Content Include="wwwroot\master\sass\app\table-extras.scss" />
-    <Content Include="wwwroot\master\sass\app\table-grid.scss" />
-    <Content Include="wwwroot\master\sass\app\timeline.scss" />
-    <Content Include="wwwroot\master\sass\app\todo.scss" />
-    <Content Include="wwwroot\master\sass\app\top-navbar.scss" />
-    <Content Include="wwwroot\master\sass\app\typo.scss" />
-    <Content Include="wwwroot\master\sass\app\user-block.scss" />
-    <Content Include="wwwroot\master\sass\app\utils-definitions.scss" />
-    <Content Include="wwwroot\master\sass\app\utils.scss" />
-    <Content Include="wwwroot\master\sass\app\variables.scss" />
-    <Content Include="wwwroot\master\sass\app\vector-map.scss" />
-    <Content Include="wwwroot\master\sass\app\widget.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\mixins\_alerts.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\mixins\_background-variant.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\mixins\_border-radius.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\mixins\_buttons.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\mixins\_center-block.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\mixins\_clearfix.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\mixins\_forms.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\mixins\_gradients.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\mixins\_grid-framework.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\mixins\_grid.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\mixins\_hide-text.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\mixins\_image.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\mixins\_labels.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\mixins\_list-group.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\mixins\_nav-divider.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\mixins\_nav-vertical-align.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\mixins\_opacity.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\mixins\_pagination.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\mixins\_panels.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\mixins\_progress-bar.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\mixins\_reset-filter.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\mixins\_reset-text.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\mixins\_resize.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\mixins\_responsive-visibility.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\mixins\_size.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\mixins\_tab-focus.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\mixins\_table-row.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\mixins\_text-emphasis.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\mixins\_text-overflow.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\mixins\_vendor-prefixes.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\_alerts.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\_badges.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\_breadcrumbs.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\_button-groups.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\_buttons.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\_carousel.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\_close.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\_code.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\_component-animations.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\_dropdowns.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\_forms.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\_glyphicons.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\_grid.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\_input-groups.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\_jumbotron.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\_labels.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\_list-group.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\_media.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\_mixins.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\_modals.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\_navbar.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\_navs.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\_normalize.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\_pager.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\_pagination.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\_panels.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\_popovers.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\_print.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\_progress-bars.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\_responsive-embed.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\_responsive-utilities.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\_scaffolding.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\_tables.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\_theme.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\_thumbnails.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\_tooltip.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\_type.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\_utilities.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\_variables.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\bootstrap\_wells.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\_bootstrap-compass.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\_bootstrap-mincer.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\_bootstrap-sprockets.scss" />
-    <Content Include="wwwroot\master\sass\bootstrap\_bootstrap.scss" />
-    <Content Include="wwwroot\master\sass\themes\theme-a.scss" />
-    <Content Include="wwwroot\master\sass\themes\theme-b.scss" />
-    <Content Include="wwwroot\master\sass\themes\theme-c.scss" />
-    <Content Include="wwwroot\master\sass\themes\theme-d.scss" />
-    <Content Include="wwwroot\master\sass\themes\theme-e.scss" />
-    <Content Include="wwwroot\master\sass\themes\theme-f.scss" />
-    <Content Include="wwwroot\master\sass\themes\theme-g.scss" />
-    <Content Include="wwwroot\master\sass\themes\theme-h.scss" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.1.0" />
-    <PackageReference Include="AutoMapper" Version="6.1.1" />
-    <PackageReference Include="EPPlus.Core" Version="1.5.1" />
-    <PackageReference Include="MediatR" Version="3.0.1" />
-    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.1.0-beta6" />
-    <PackageReference Include="Microsoft.AspNetCore" Version="2.0.0-preview1-final" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="2.0.0-preview1-final" />
-    <PackageReference Include="Microsoft.AspNetCore.DataProtection.Redis" Version="0.1.2" />
-    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="2.0.0-preview1-final" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.0.0-preview1-final" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.0-preview1-final" />
-    <PackageReference Include="Microsoft.AspNetCore.ResponseCaching" Version="2.0.0-preview1-final" />
-    <PackageReference Include="Microsoft.AspNetCore.ResponseCompression" Version="2.0.0-preview1-final" />
-    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.0.0-preview1-final" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.0.0-preview1-final" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.0.0-preview1-final" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.0.0-preview1-final" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.2.0" />
+    <PackageReference Include="AutoMapper" Version="6.2.2" />
+    <PackageReference Include="EPPlus.Core" Version="1.5.4" />
+    <PackageReference Include="MediatR" Version="4.0.1" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore" Version="2.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="2.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.DataProtection.Redis" Version="0.3.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="2.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.ResponseCaching" Version="2.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.ResponseCompression" Version="2.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.0.1" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.Design" Version="2.0.0-preview1-final" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.0-preview1-final" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.Extensions.Caching.Redis" Version="2.0.0-preview1-final" />
-    <PackageReference Include="Microsoft.Extensions.Caching.SqlServer" Version="2.0.0-preview1-final" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="2.0.0-preview1-final" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="2.0.0-preview1-final" />
-    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="2.0.0-preview1-final" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="2.0.0-preview1-final" />
-    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.0.7.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.1" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Redis" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Caching.SqlServer" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="2.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="2.0.1" />
+    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.0.8.1" />
   </ItemGroup>
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="1.0.0" />
@@ -356,6 +129,9 @@
     <ProjectReference Include="..\Infrastructure\Wjw1.Infrastructure.csproj" />
     <ProjectReference Include="..\Modules\Wjw1.Module.Localization\Wjw1.Module.Localization.csproj" />
     <ProjectReference Include="..\Modules\Wjw1.Module.Task\Wjw1.Module.Task.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>

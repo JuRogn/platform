@@ -1,0 +1,121 @@
+﻿@using Wjw1.Libarary.Web
+@model PagedList<Wjw1.Module.Task.ViewModels.TaskCenterListModel>
+
+<div class="content-heading">
+    <div class="row">
+        <div class="col-xs-6">
+
+            @await Html.PartialAsync("Button_Create", new { })
+            
+            @await Html.PartialAsync("Button_Export", new { })
+
+        </div>
+
+        <div class="col-xs-6">
+            @await Html.PartialAsync("Search_Input")
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    @await Html.PartialAsync("_alerts")
+
+    <div class="panel-body">
+
+        @{
+            int i = 0;
+        }
+        @foreach (var item in Model)
+        {
+            <div style="float: left;width: 100px;text-align: right;padding:0 10px;">
+                @if (string.IsNullOrEmpty(item.ActualEndTime))
+                {
+                    <h3>
+                        @{
+                            i++;
+                            @i
+                        }
+                    </h3>
+                            }
+
+
+                @if (!string.IsNullOrEmpty(item.ScheduleEndTime) && string.IsNullOrEmpty(item.ActualEndTime))
+                {
+                    <div>剩余@((DateTime.Parse(item.ScheduleEndTime) - DateTime.Now).TotalDays.ToString("F1"))天</div>
+                }
+
+
+            </div>
+
+            <blockquote style="padding: 5px 10px; margin-left: 100px;  font-size: inherit; " onmouseover="this.style.backgroundColor='#F4F9FD'" onmouseout="this.style.backgroundColor=''">
+                <div class="pull-right">
+                    @if (string.IsNullOrEmpty(item.ActualEndTime))
+                    {
+                        <span>
+
+
+                        </span>
+                    }
+                    else
+                    {
+                        <span></span>
+                    }
+                </div>
+
+                <h4>
+
+                    @if (string.IsNullOrEmpty(item.ActualEndTime))
+                    {
+                        <i class="fa fa-square-o fa-fw"></i>
+                    }
+                    else
+                    {
+                        <i class="fa fa-check-square-o fa-fw"></i>
+                    }
+
+                    @Html.DisplayFor(a => item.Title)
+
+                    [@item.TaskType]
+                </h4>
+                <small style="padding: 0 30px;">
+
+                    @if (!string.IsNullOrEmpty(item.ScheduleEndTime))
+                    {
+                        <span>截止时间：@Html.DisplayFor(a => item.ScheduleEndTime)</span>
+
+                    }
+
+                    @if (!string.IsNullOrEmpty(item.ActualEndTime))
+                    {
+                        <span>完成时间：@Html.DisplayFor(a => item.ActualEndTime)</span>
+
+                    }
+                    <span>
+                        发布人：@Html.DisplayFor(a => item.UserName)
+                    </span>
+
+                    <span>
+                        负责人：@Html.DisplayFor(a => item.TaskExecutor)
+                    </span>
+                </small>
+
+                @if (!string.IsNullOrEmpty(item.Content))
+                {
+                    <blockquote style="font-size: inherit;padding:5px 16px; margin-bottom: 5px;margin-left: 9px;">
+                        @Html.DisplayFor(a => item.Content)
+                    </blockquote>
+                }
+
+                @if (!string.IsNullOrEmpty(item.Files))
+                {
+                    <blockquote style="font-size: inherit;padding: 5px 0; margin-bottom: 5px; margin-left:9px;">
+                        @Html.DisplayFor(a => item.Files)
+                    </blockquote>
+                }
+                <div class="clearfix"></div>
+
+            </blockquote>
+                            }
+        <pager pager-option="Model"></pager>
+    </div>
+</div>

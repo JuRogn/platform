@@ -53,7 +53,7 @@ namespace Web.Helpers
                 //？需要注销当前用户？
                 return base.OnAuthorizationAsync(context);
             }
-            if (userInfo != null && sysRoleService != null && sysRoleService.GetAll(a => a.Users.Any(b => b.UserId.Equals(userInfo.UserId)) &&
+            if (userInfo != null && sysRoleService != null && sysRoleService.GetAll(a => a.SysUserRoles.Any(b => b.UserId.Equals(userInfo.UserId)) &&
                                        a.SysRoleSysControllerSysActions.Any(b => b.SysControllerSysAction.SysController.SysArea.AreaName.Equals(area) &&
                                                b.SysControllerSysAction.SysController.ControllerName.Equals(controller) &&
                                                b.SysControllerSysAction.SysAction.ActionName.Equals(action))).Any())

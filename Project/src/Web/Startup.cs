@@ -19,6 +19,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.Extensions.Localization;
 using Wjw1.Module.Localization;
+using Microsoft.AspNetCore.Identity;
 
 namespace Web
 {

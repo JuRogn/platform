@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using System;
+using Microsoft.AspNetCore.Identity;
 
 namespace Wjw1.Infrastructure.Models
 {
@@ -72,8 +72,10 @@ namespace Wjw1.Infrastructure.Models
         [ScaffoldColumn(false)]
         public ICollection<SysDepartmentSysUser> SysDepartmentSysUsers { get; set; } = new List<SysDepartmentSysUser>();
 
+        [ScaffoldColumn(false)]
+        public ICollection<SysUserRole> SysUserRoles { get; set; } = new List<SysUserRole>();
 
-   
+
     }
     
 }

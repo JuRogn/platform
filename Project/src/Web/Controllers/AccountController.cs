@@ -5,7 +5,6 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
@@ -38,7 +37,6 @@ namespace Web.Controllers
         public AccountController(
             UserManager<SysUser> userManager,
             SignInManager<SysUser> signInManager,
-            IOptions<IdentityCookieOptions> identityCookieOptions,
             IEmailSender emailSender,
             ISmsSender smsSender,
             ILoggerFactory loggerFactory, IRepository<SysEnterpriseSysUser> iSysEnterpriseSysUserService, IRepository<SysEnterprise> sysEnterpriseService
@@ -47,7 +45,6 @@ namespace Web.Controllers
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            _externalCookieScheme = identityCookieOptions.Value.ExternalCookieAuthenticationScheme;
             _emailSender = emailSender;
             _smsSender = smsSender;
             _iSysEnterpriseSysUserService = iSysEnterpriseSysUserService;
@@ -160,7 +157,7 @@ namespace Web.Controllers
                         _iSysEnterpriseSysUserService.Save(null, new SysEnterpriseSysUser() { SysEnterpriseId = "100", SysUserId = user.Id });
                         await _iSysEnterpriseSysUserService.CommitAsync();//_unitOfWork.CommitAsync();
                         // 添加超级用户
-                        user.Roles.Add(new IdentityUserRole<string>() { RoleId = "SuperAdmin",UserId=user.Id });
+                        user.SysUserRoles.Add(new SysUserRole { RoleId = "SuperAdmin", UserId = user.Id});//RoleId= "SuperAdmin", UserId=user.Id,SysRoleId = "",SysUserId=user.Id
                         await _userManager.UpdateAsync(user);
                     }
                     else

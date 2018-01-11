@@ -2,11 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 using Wjw1.Infrastructure;
-using Wjw1.Infrastructure.Models;
-using Wjw1.Module.Task.Models;
 
 namespace Web.Migrations
 {
@@ -15,11 +12,12 @@ namespace Web.Migrations
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
+#pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.0.0-preview1-24937")
+                .HasAnnotation("ProductVersion", "2.0.1-rtm-125")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
@@ -41,14 +39,14 @@ namespace Web.Migrations
                     b.HasIndex("NormalizedName")
                         .IsUnique()
                         .HasName("RoleNameIndex")
-                        .HasAnnotation("SqlServer:Filter", "[NormalizedName] IS NOT NULL");
+                        .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("IdentityRole");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -67,7 +65,7 @@ namespace Web.Migrations
                     b.ToTable("AspNetRoleClaims");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserClaim<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -86,7 +84,7 @@ namespace Web.Migrations
                     b.ToTable("AspNetUserClaims");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserLogin<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider");
 
@@ -104,20 +102,25 @@ namespace Web.Migrations
                     b.ToTable("AspNetUserLogins");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserRole<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                 {
                     b.Property<string>("UserId");
 
                     b.Property<string>("RoleId");
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired();
 
                     b.HasKey("UserId", "RoleId");
 
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUserRole<string>");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserToken<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
                     b.Property<string>("UserId");
 
@@ -853,7 +856,7 @@ namespace Web.Migrations
                     b.HasIndex("NormalizedUserName")
                         .IsUnique()
                         .HasName("UserNameIndex")
-                        .HasAnnotation("SqlServer:Filter", "[NormalizedUserName] IS NOT NULL");
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
                 });
@@ -1063,7 +1066,7 @@ namespace Web.Migrations
 
             modelBuilder.Entity("Wjw1.Infrastructure.Models.SysRole", b =>
                 {
-                    b.HasBaseType("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole");
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityRole");
 
                     b.Property<string>("EnterpriseId")
                         .HasMaxLength(256);
@@ -1083,47 +1086,64 @@ namespace Web.Migrations
                     b.HasDiscriminator().HasValue("SysRole");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>
+            modelBuilder.Entity("Wjw1.Infrastructure.Models.SysUserRole", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole")
-                        .WithMany("Claims")
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUserRole<string>");
+
+                    b.Property<string>("SysRoleId");
+
+                    b.Property<string>("SysUserId");
+
+                    b.HasIndex("SysRoleId");
+
+                    b.HasIndex("SysUserId");
+
+                    b.ToTable("SysUserRole");
+
+                    b.HasDiscriminator().HasValue("SysUserRole");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole")
+                        .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserClaim<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
                     b.HasOne("Wjw1.Infrastructure.Models.SysUser")
-                        .WithMany("Claims")
+                        .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserLogin<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.HasOne("Wjw1.Infrastructure.Models.SysUser")
-                        .WithMany("Logins")
+                        .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserRole<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole")
-                        .WithMany("Users")
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole")
+                        .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Wjw1.Infrastructure.Models.SysUser")
-                        .WithMany("Roles")
+                        .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserToken<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
                     b.HasOne("Wjw1.Infrastructure.Models.SysUser")
-                        .WithMany("Tokens")
+                        .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
@@ -1335,6 +1355,18 @@ namespace Web.Migrations
                         .WithMany()
                         .HasForeignKey("UpdatedBy");
                 });
+
+            modelBuilder.Entity("Wjw1.Infrastructure.Models.SysUserRole", b =>
+                {
+                    b.HasOne("Wjw1.Infrastructure.Models.SysRole", "SysRole")
+                        .WithMany("SysUserRoles")
+                        .HasForeignKey("SysRoleId");
+
+                    b.HasOne("Wjw1.Infrastructure.Models.SysUser", "SysUser")
+                        .WithMany("SysUserRoles")
+                        .HasForeignKey("SysUserId");
+                });
+#pragma warning restore 612, 618
         }
     }
 }

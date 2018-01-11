@@ -1,19 +1,17 @@
 ﻿using System;
-using System.IO;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
-using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Wjw1.Infrastructure;
 using Web.Extensions;
-using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore.Design;
 
 namespace Web
 {
-    public class MigrationSimplDbContextFactory : IDbContextFactory<ApplicationDbContext>
+    public class MigrationSimplDbContextFactory : IDesignTimeDbContextFactory<ApplicationDbContext>
     {
-        public ApplicationDbContext Create(string[] args)
+        public ApplicationDbContext CreateDbContext(string[] args)
         {
             var environmentName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 
@@ -38,5 +36,6 @@ namespace Web
 
             return _serviceProvider.GetRequiredService<ApplicationDbContext>();
         }
+        
     }
 }

@@ -371,6 +371,7 @@ namespace Web
                         db.SysRoles.AddAsync(defualtRole).Wait();
 
                     #endregion
+
                     #region  超级管理员
                     var sysRole = new SysRole
                         {
