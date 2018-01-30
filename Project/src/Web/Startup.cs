@@ -20,6 +20,7 @@ using System.Collections.Generic;
 using Microsoft.Extensions.Localization;
 using Wjw1.Module.Localization;
 using Microsoft.AspNetCore.Identity;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace Web
 {
@@ -108,7 +109,10 @@ namespace Web
             services.AddResponseCompression();
 
             services.AddOptions();
-
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
+            });
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
             return services.Build(Configuration, _env);
         }
@@ -188,7 +192,12 @@ namespace Web
                 routes.MapRoute(
                     "default",
                     "{controller=Home}/{action=Index}/{id?}");
-            });
+            })
+            .UseSwagger()
+            .UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            }); ;
         }
     }
 
