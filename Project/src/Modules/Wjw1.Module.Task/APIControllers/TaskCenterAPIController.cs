@@ -1,17 +1,12 @@
-﻿using AutoMapper;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using System;
 using System.Linq;
 using System.Linq.Dynamic.Core;
 using System.Threading.Tasks;
 
 using Wjw1.Infrastructure;
 using Wjw1.Infrastructure.Models;
-using Wjw1.Libarary.ModuleBaseLibrary;
-using Wjw1.Libarary.ModuleBaseLibrary.Extentions;
 using Wjw1.Libarary.Web;
-using Wjw1.Libarary.Web.ActionResults;
 using Wjw1.Module.Task.Models;
 using Wjw1.Module.Task.ViewModels;
 
@@ -22,6 +17,7 @@ namespace Web.Areas.API.Controllers
     /// </summary>
     [Area("API")]
     [Route("api/TaskCenter")]
+    [Authorize(AuthenticationSchemes = "Bearer")]
     public class TaskCenterAPIController : Controller
     {
         private readonly IRepository<TaskCenter> _iTaskCenterService;
@@ -53,7 +49,7 @@ namespace Web.Areas.API.Controllers
         [HttpGet]
         public async Task<APIPagedList<TaskCenterListModel>> Index(string keyword, string ordering, int pageIndex = 1)
         {
-            var model = _iTaskCenterService.GetAll(a => a.CreatedBy == _iUserInfo.UserId || a.TaskExecutorId == _iUserInfo.UserId).Select(a => new TaskCenterListModel { TaskType = a.TaskType.ToString(), Title = a.Title, Content = a.Content, Files = a.Files, TaskExecutor = a.TaskExecutor.UserName, UserName = a.UserCreatedBy.UserName, ScheduleEndTime = a.ScheduleEndTime, Id = a.Id, ActualEndTime = a.ActualEndTime, CreatedBy = a.CreatedBy, TaskExecutorId = a.TaskExecutorId, Duration = a.Duration, CreatedDate = a.CreatedDate });
+            var model = _iTaskCenterService.GetAll(a => a.UserCreatedBy.UserName == User.Identity.Name || a.TaskExecutorId == _iUserInfo.UserId).Select(a => new TaskCenterListModel { TaskType = a.TaskType.ToString(), Title = a.Title, Content = a.Content, Files = a.Files, TaskExecutor = a.TaskExecutor.UserName, UserName = a.UserCreatedBy.UserName, ScheduleEndTime = a.ScheduleEndTime, Id = a.Id, ActualEndTime = a.ActualEndTime, CreatedBy = a.CreatedBy, TaskExecutorId = a.TaskExecutorId, Duration = a.Duration, CreatedDate = a.CreatedDate });
 
             model = !string.IsNullOrEmpty(ordering) ? model.OrderBy(ordering, null) : model.OrderBy(a => a.ActualEndTime).ThenBy(a => a.ScheduleEndTime);
             

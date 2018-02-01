@@ -104,6 +104,31 @@ namespace Web
             })
             .AddViewLocalization()
             .AddDataAnnotationsLocalization();
+            // configure identity server with in-memory stores, keys, clients and scopes
+            services.AddIdentityServer()
+                .AddDeveloperSigningCredential()
+                .AddInMemoryPersistedGrants()
+                .AddInMemoryIdentityResources(Config.GetIdentityResources())
+                .AddInMemoryApiResources(Config.GetApiResources())
+                .AddInMemoryClients(Config.GetClients())
+                .AddAspNetIdentity<SysUser>()
+                .AddResourceOwnerValidator<ResourceOwnerPasswordValidator>()
+                .AddProfileService<ProfileService>()
+                ;
+
+
+            services.AddMvcCore()
+                .AddAuthorization()
+                .AddJsonFormatters();
+
+            services.AddAuthentication("Bearer")
+                .AddIdentityServerAuthentication(options =>
+                {
+                    options.Authority = "http://localhost:50963";
+                    options.RequireHttpsMetadata = false;
+                    options.ApiName = "api1";
+                    options.BackChannelTimeouts = TimeSpan.FromDays(14);
+                });
 
             // 启用gzip压缩
             services.AddResponseCompression();
@@ -182,8 +207,9 @@ namespace Web
             // 初始化数据
             app.UseDataBaseInitializer();
             
-            app.UseAuthentication();
+            //app.UseAuthentication();
             // Add external authentication middleware below. To configure them please see https://go.microsoft.com/fwlink/?LinkID=532715
+            app.UseIdentityServer();
             app.UseMvc(routes =>
             {
                 routes.MapRoute("areaRoute",
