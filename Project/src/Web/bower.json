@@ -2,6 +2,7 @@
   "name": "asp.net",
   "private": true,
   "dependencies": {
+    "signalr": "2.2.2",
     "bootstrap": "3.3.7",
     "Flot": "flot/flot#0.8.3",
     "jquery.easing": "1.3.1",
@@ -49,7 +50,7 @@
     "cropper": "v3.0.0-rc",
     "matchMedia": "0.3.0",
     "sparkline": "http://omnipotent.net/jquery.sparkline/2.1.2/jquery.sparkline.js",
-   "rickshaw": "v1.6.0",
+    "rickshaw": "v1.6.0",
     "font-awesome": "v4.7.0",
     "jquery-storage-api": "jQuery-Storage-API#1.9.4",
     "jqGrid": "jqgrid#v5.2.0",

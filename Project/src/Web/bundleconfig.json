@@ -47,6 +47,7 @@
       //"wwwroot/lib/jquery-classyloader/js/jquery.classyloader.js",
       "wwwroot/lib/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js",
 
+      "wwwroot/lib/signalr/jquery.signalR.js",
 
 
       // js 初始化
@@ -122,7 +123,6 @@
       "wwwroot/master/js/modules/chart-easypie.js",
 
       //"wwwroot/master/js/modules/select2.js",
-
       // 自定义js
       "wwwroot/js/site.js"
     ],

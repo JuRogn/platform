@@ -12,7 +12,6 @@ namespace Web.Helpers
     public class UserInfo : IUserInfo
     {
         private readonly UserManager<SysUser> _userManager;
-        private readonly RoleManager<SysRole> _roleManager;
         private readonly  IHttpContextAccessor _httpContextAccessor;
 
         public UserInfo(UserManager<SysUser> userManager, IHttpContextAccessor httpContextAccessor)
@@ -21,20 +20,20 @@ namespace Web.Helpers
             _httpContextAccessor = httpContextAccessor;
         }
 
-        public string EnterpriseId => GetCurrentUserAsync().Result?.CurrentEnterpriseId;
+        public string EnterpriseId => GetCurrentUserAsync()?.CurrentEnterpriseId;
 
-        public string UserId =>  GetCurrentUserAsync().Result?.Id;
+        public string UserId =>  GetCurrentUserAsync()?.Id;
 
-        public string UserName => GetCurrentUserAsync().Result?.UserName;
+        public string UserName => GetCurrentUserAsync()?.UserName;
 
         public bool? IsInRole(string roleName)
         {
-            return _userManager.GetRolesAsync(GetCurrentUserAsync().Result).Result?.Any(r => r.Equals(roleName));
+            return _userManager.GetRolesAsync(GetCurrentUserAsync()).Result?.Any(r => r.Equals(roleName));
         }
 
-        private Task<SysUser> GetCurrentUserAsync()
+        private SysUser GetCurrentUserAsync()
         {
-            return  _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
+            return _userManager.Users.FirstOrDefault(u => u.UserName == _httpContextAccessor.HttpContext.User.Identity.Name);//.GetUserAsync(_httpContextAccessor.HttpContext.User);
         }
     }
 }

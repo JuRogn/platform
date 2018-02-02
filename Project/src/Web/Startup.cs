@@ -21,6 +21,7 @@ using Microsoft.Extensions.Localization;
 using Wjw1.Module.Localization;
 using Microsoft.AspNetCore.Identity;
 using Swashbuckle.AspNetCore.Swagger;
+using Web.Hubs;
 
 namespace Web
 {
@@ -138,6 +139,7 @@ namespace Web
             {
                 c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
             });
+            services.AddSignalR();
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
             return services.Build(Configuration, _env);
         }
@@ -223,7 +225,11 @@ namespace Web
             .UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-            }); ;
+            });
+            app.UseSignalR(routes => {
+                routes.MapHub<CounterHub>("counter");
+                routes.MapHub<WeatherHub>("weather");
+            });
         }
     }
 

@@ -55,6 +55,12 @@ namespace Web.Areas.API.Controllers
             
             return model.ToAPIPagedList(pageIndex);
         }
+
+        [HttpGet("TestUserInfo")]
+        public ActionResult TestUserInfo()
+        {
+            return new JsonResult(new {userName= User.Identity.Name,userId= _iUserInfo.UserId });
+        }
     }
         
 }

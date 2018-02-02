@@ -1,0 +1,82 @@
+﻿
+@{
+    ViewData["Title"] = "TestSingalR";
+}
+
+<h2>TestSingalR</h2>
+
+<div id="chat-area">
+    <ul id="messages"></ul>
+    <ul id="users">
+        <li><b>Users online</b></li>
+    </ul>
+    <div class="clear">
+    </div>
+    <form id="sendmessage" action="#">
+        @*<input type="text" id="new-message" />*@
+        <input type="submit" id="send" value="increment" class="send" />
+    </form>
+</div>
+@*<script src="lib/signalr/jquery.signalR.js"></script>*@
+<script>
+    let connection = $.connection("/counter");
+    connection.received(function (message) {
+        alert(message);
+    });
+//connection.onclose(e => {
+//    if (e) {
+//        appendLine('Connection closed with error: ' + e, 'red');
+//    }
+//    else {
+//        appendLine('Disconnected', 'green');
+//    }
+//});
+
+//connection.on('SetUsersOnline', usersOnline => {
+//    usersOnline.forEach(user => addUserOnline(user));
+//});
+
+//connection.on('UsersJoined', users => {
+//    users.forEach(user => {
+//        appendLine('User ' + user.name + ' joined the chat');
+//        addUserOnline(user);
+//    });
+//});
+
+//connection.on('UsersLeft', users => {
+//    users.forEach(user => {
+//        appendLine('User ' + user.name + ' left the chat');
+//        document.getElementById(user.connectionId).outerHTML = '';
+//    });
+//});
+
+//connection.on('Send', (userName, message) => {
+//    var nameElement = document.createElement('b');
+//    nameElement.innerText = userName + ':';
+
+//    var msgElement = document.createElement('span');
+//    msgElement.innerText = ' ' + message;
+
+//    var child = document.createElement('li');
+//    child.appendChild(nameElement);
+//    child.appendChild(msgElement);
+//    document.getElementById('messages').appendChild(child);
+//});
+
+    connection.start().done(function () { console.log("connected..") }).catch(err => appendLine(err, 'red'));
+
+document.getElementById('sendmessage').addEventListener('submit', event => {
+    //let data = document.getElementById('new-message').value;
+    connection.invoke('increment').catch(err => appendLine(err, 'red'));
+    event.preventDefault();
+});
+
+function appendLine(line, color) {
+    let child = document.createElement('li');
+    if (color) {
+        child.style.color = color;
+    }
+    child.innerText = line;
+    document.getElementById('messages').appendChild(child);
+};
+</script>

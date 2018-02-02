@@ -45,7 +45,8 @@ namespace Web
             var roles = await _signInManager.UserManager.GetRolesAsync(user);
             var claims =  new Claim[]
                 {
-                new Claim("UserId", user.Id),// 1.ToString()),
+                new Claim(JwtClaimTypes.Id, user.Id),
+                new Claim(JwtClaimTypes.PreferredUserName, user.UserName),
                 new Claim(JwtClaimTypes.Name,user.UserName),
                 new Claim(JwtClaimTypes.Email, user.Email),
                 new Claim(JwtClaimTypes.Expiration,DateTime.UtcNow.AddDays(14).Second.ToString()),
