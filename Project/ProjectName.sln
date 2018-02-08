@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.6
+VisualStudioVersion = 15.0.27130.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataBase", "DataBase", "{4CC6BEFD-0470-47F3-B81B-F75DD88D2DFA}"
 EndProject
@@ -13,15 +13,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{E6CE466D-C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{5B3D06E6-33E8-43BB-8CEB-81CCEB183243}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wjw1.Infrastructure", "src\Infrastructure\Wjw1.Infrastructure.csproj", "{5C934A63-0C25-464F-9FB4-6CA9907CB016}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wjw1.Infrastructure", "src\Infrastructure\Wjw1.Infrastructure.csproj", "{5C934A63-0C25-464F-9FB4-6CA9907CB016}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web", "src\Web\Web.csproj", "{E960439E-438E-4271-B718-B82F08DD00AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wjw1.Libarary.ModuleBaseLibrary", "src\ModuleBaseLibrary\Wjw1.Libarary.ModuleBaseLibrary.csproj", "{8D87D242-EAF1-4A18-B916-E1A0A4533529}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wjw1.Libarary.ModuleBaseLibrary", "src\ModuleBaseLibrary\Wjw1.Libarary.ModuleBaseLibrary.csproj", "{8D87D242-EAF1-4A18-B916-E1A0A4533529}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wjw1.Module.Task", "src\Modules\Wjw1.Module.Task\Wjw1.Module.Task.csproj", "{111EDFF3-997D-4F97-B308-7E06EF5B0C47}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wjw1.Module.Localization", "src\Modules\Wjw1.Module.Localization\Wjw1.Module.Localization.csproj", "{FF941AA8-D409-4D4E-9532-FE061AC5BC6C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wjw1.Module.Localization", "src\Modules\Wjw1.Module.Localization\Wjw1.Module.Localization.csproj", "{FF941AA8-D409-4D4E-9532-FE061AC5BC6C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VueApp", "VueApp\VueApp.csproj", "{020FA3B4-E7D5-4E26-9981-E8CB1B80CD6A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +51,10 @@ Global
 		{FF941AA8-D409-4D4E-9532-FE061AC5BC6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF941AA8-D409-4D4E-9532-FE061AC5BC6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FF941AA8-D409-4D4E-9532-FE061AC5BC6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{020FA3B4-E7D5-4E26-9981-E8CB1B80CD6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{020FA3B4-E7D5-4E26-9981-E8CB1B80CD6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{020FA3B4-E7D5-4E26-9981-E8CB1B80CD6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{020FA3B4-E7D5-4E26-9981-E8CB1B80CD6A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,5 +66,9 @@ Global
 		{8D87D242-EAF1-4A18-B916-E1A0A4533529} = {0DBE249A-696E-4873-AC17-EE22CA21F20D}
 		{111EDFF3-997D-4F97-B308-7E06EF5B0C47} = {5B3D06E6-33E8-43BB-8CEB-81CCEB183243}
 		{FF941AA8-D409-4D4E-9532-FE061AC5BC6C} = {5B3D06E6-33E8-43BB-8CEB-81CCEB183243}
+		{020FA3B4-E7D5-4E26-9981-E8CB1B80CD6A} = {0DBE249A-696E-4873-AC17-EE22CA21F20D}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DC39D9AB-63D9-4B6F-82EB-ED3998E0DD37}
 	EndGlobalSection
 EndGlobal

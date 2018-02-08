@@ -67,6 +67,7 @@ namespace  Wjw1.Infrastructure
         [ScaffoldColumn(false)]
         [MaxLength(20)]
         [Required]
+        [Display(Name = "CreatedDate")]
         public string CreatedDate { get; set; }
 
         /// <summary>
@@ -77,6 +78,7 @@ namespace  Wjw1.Infrastructure
         [Required]
         public string CreatedTime { get; set; }
 
+        [Display(Name = "CreateDateTime")]
         public string CreateDateTime => CreatedDate + " " + CreatedTime;
 
         /// <summary>
