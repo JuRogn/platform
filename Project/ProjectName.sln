@@ -25,6 +25,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wjw1.Module.Localization", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VueApp", "VueApp\VueApp.csproj", "{020FA3B4-E7D5-4E26-9981-E8CB1B80CD6A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AngularApp", "AngularApp\AngularApp.csproj", "{81B596D9-CCFB-4DD4-BB96-2818DB394F9B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,10 @@ Global
 		{020FA3B4-E7D5-4E26-9981-E8CB1B80CD6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{020FA3B4-E7D5-4E26-9981-E8CB1B80CD6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{020FA3B4-E7D5-4E26-9981-E8CB1B80CD6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81B596D9-CCFB-4DD4-BB96-2818DB394F9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81B596D9-CCFB-4DD4-BB96-2818DB394F9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81B596D9-CCFB-4DD4-BB96-2818DB394F9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81B596D9-CCFB-4DD4-BB96-2818DB394F9B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,6 +73,7 @@ Global
 		{111EDFF3-997D-4F97-B308-7E06EF5B0C47} = {5B3D06E6-33E8-43BB-8CEB-81CCEB183243}
 		{FF941AA8-D409-4D4E-9532-FE061AC5BC6C} = {5B3D06E6-33E8-43BB-8CEB-81CCEB183243}
 		{020FA3B4-E7D5-4E26-9981-E8CB1B80CD6A} = {0DBE249A-696E-4873-AC17-EE22CA21F20D}
+		{81B596D9-CCFB-4DD4-BB96-2818DB394F9B} = {0DBE249A-696E-4873-AC17-EE22CA21F20D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DC39D9AB-63D9-4B6F-82EB-ED3998E0DD37}
