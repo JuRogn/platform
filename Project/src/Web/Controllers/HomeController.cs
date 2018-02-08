@@ -34,7 +34,7 @@ namespace Web.Controllers
             return View();
         }
 
-        [Authorize]
+        //[Authorize]
         public IActionResult TestSingalR() {
             return View();
         }

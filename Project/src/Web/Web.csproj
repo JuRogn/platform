@@ -73,6 +73,10 @@
     <Compile Include="Areas\Platform\Controllers\SysControllers\SysUserLogController.cs" />
     <Compile Include="Areas\Platform\Controllers\SysHelpControllers\SysHelpClassController.cs" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="wwwroot\js\testSignalR.html" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.2.0" />
     <PackageReference Include="AutoMapper" Version="6.2.2" />
@@ -83,6 +87,7 @@
     <PackageReference Include="MediatR" Version="4.0.1" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.1.1" />
     <PackageReference Include="Microsoft.AspNetCore" Version="2.0.1" />
+    <!--<PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />-->
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="2.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.DataProtection.Redis" Version="0.3.1" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="2.0.1" />

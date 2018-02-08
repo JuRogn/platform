@@ -25,13 +25,15 @@
       "wwwroot/lib/jquery-validation/dist/jquery.validate.js", //min.
       "wwwroot/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.min.js",
       "wwwroot/lib/modernizr/modernizr.js",
+
       "wwwroot/lib/matchMedia/matchMedia.js",
       "wwwroot/lib/bootstrap/dist/js/bootstrap.min.js",
       "wwwroot/lib/jQuery-Storage-API/jquery.storageapi.js",
       "wwwroot/lib/moment/min/moment-with-locales.js",
-      "wwwroot/lib/pace/pace.min.js",
+      //"wwwroot/lib/pace/pace.min.js",
       "wwwroot/lib/jquery.easing/js/jquery.easing.js",
       "wwwroot/lib/animo.js/animo.js",
+
       "wwwroot/lib/slimScroll/jquery.slimscroll.js",
       "wwwroot/lib/screenfull/dist/screenfull.js",
       //"wwwroot/lib/jquery-localize-i18n/dist/jquery.localize.js",
@@ -45,12 +47,11 @@
       "wwwroot/lib/flot-spline/js/jquery.flot.spline.js",
       "wwwroot/lib/chosen/chosen.jquery.js",
       //"wwwroot/lib/jquery-classyloader/js/jquery.classyloader.js",
-      "wwwroot/lib/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js",
-
-      "wwwroot/lib/signalr/jquery.signalR.js",
+      "wwwroot/lib/eonasdan-bootstrap-datetimepicker/src/js/bootstrap-datetimepicker.js",
 
 
-      // js 初始化
+
+      //// js 初始化
       "wwwroot/master/js/app.init.js",
 
 
@@ -124,7 +125,12 @@
 
       //"wwwroot/master/js/modules/select2.js",
       // 自定义js
-      "wwwroot/js/site.js"
+
+      //"wwwroot/js/jquery.js",
+      //"wwwroot/js/signalr.js",
+      "wwwroot/js/site.js",
+      //"wwwroot/lib/signalr/jquery.signalR.js"
+
     ],
     "sourceMap": true
   }

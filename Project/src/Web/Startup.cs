@@ -22,9 +22,64 @@ using Wjw1.Module.Localization;
 using Microsoft.AspNetCore.Identity;
 using Swashbuckle.AspNetCore.Swagger;
 using Web.Hubs;
+using Microsoft.Extensions.Hosting;
 
 namespace Web
 {
+
+    public class Startup2
+    {
+        public Startup2(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+
+        public IConfiguration Configuration { get; }
+
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddMvc();
+
+            services.AddSignalR();
+
+            services.AddSingleton<IHostedService, Counter>();
+            services.AddSingleton<IHostedService, Weather>();
+        }
+
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        {
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+                //app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
+                //{
+                //    HotModuleReplacement = true
+                //});
+            }
+            else
+            {
+                app.UseExceptionHandler("/Home/Error");
+            }
+
+            app.UseStaticFiles();
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<CounterHub>("c");
+                routes.MapHub<WeatherHub>("w");
+            });
+
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}");
+
+                //routes.MapSpaFallbackRoute(
+                //    name: "spa-fallback",
+                //    defaults: new { controller = "Home", action = "Index" });
+            });
+        }
+    }
     public class Startup
     {
         private static readonly IList<ModuleInfo> Modules = new List<ModuleInfo>();
@@ -140,6 +195,8 @@ namespace Web
                 c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
             });
             services.AddSignalR();
+            services.AddSingleton<IHostedService, Counter>();
+            services.AddSingleton<IHostedService, Weather>();
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
             return services.Build(Configuration, _env);
         }
@@ -184,10 +241,10 @@ namespace Web
 
 
             // 启用gzip压缩
-            app.UseResponseCompression();
+            //app.UseResponseCompression();
 
             // Response Caching Middleware
-            app.UseResponseCaching();
+            //app.UseResponseCaching();
 
             app.UseStaticFiles();
 
@@ -212,6 +269,11 @@ namespace Web
             //app.UseAuthentication();
             // Add external authentication middleware below. To configure them please see https://go.microsoft.com/fwlink/?LinkID=532715
             app.UseIdentityServer();
+            //app.UseWebSockets();
+            app.UseSignalR(routes => {
+                routes.MapHub<CounterHub>("c");
+                routes.MapHub<WeatherHub>("w");
+            });
             app.UseMvc(routes =>
             {
                 routes.MapRoute("areaRoute",
@@ -225,10 +287,6 @@ namespace Web
             .UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-            });
-            app.UseSignalR(routes => {
-                routes.MapHub<CounterHub>("counter");
-                routes.MapHub<WeatherHub>("weather");
             });
         }
     }

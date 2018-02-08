@@ -1,6 +1,6 @@
 ﻿@using Microsoft.Extensions.Options
 
-@inject IOptions<AppSettings> Settings
+@*@inject IOptions<AppSettings> Settings*@
 
 <!DOCTYPE html>
 <html lang="zh-cn">
@@ -9,23 +9,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="description" content="">
     <meta name="keywords" content="">
-    <title>@ViewData["Title"] @Settings.Value.SystemName</title>
+    <title>@*@ViewData["Title"] @Settings.Value.SystemName*@</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    
+
     <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
 
     <link href="~/css/app.min.css" rel="stylesheet" asp-append-version="true" />
 
     <script src="~/lib/lib.min.js" asp-append-version="true"></script>
-  
+    @*JS冲突*@
     @if (IsSectionDefined("Styles"))
     {@RenderSection("Styles", required: false)
-    }
+}
 
     <!-- =============== PAGE VENDOR SCRIPTS ===============-->
     @if (IsSectionDefined("scripts"))
     {@RenderSection("scripts", required: false)
-    }
+}
 
 </head>
 <body>

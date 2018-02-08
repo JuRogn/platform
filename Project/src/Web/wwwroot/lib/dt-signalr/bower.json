@@ -1,0 +1,7 @@
+{
+  "name": "dt-signalr",
+  "version": "1.0.0",
+  "dependencies": {
+    "dt-jquery": "latest"
+  }
+}
