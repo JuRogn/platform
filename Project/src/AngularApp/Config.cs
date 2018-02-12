@@ -105,6 +105,29 @@ namespace AngularApp
                     //SlidingRefreshTokenLifetime = 3600*24*300,
                     //AbsoluteRefreshTokenLifetime = 3600*24*300,
                     AllowOfflineAccess = true
+                },
+                new Client
+                {
+                    ClientId = "angular",
+                    ClientName = "Angular App Client",
+                    AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
+                    ClientSecrets =
+                    {
+                        new Secret("secret".Sha256())
+                    },
+                    AllowedScopes =
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        "api1"
+                    },
+                    AccessTokenLifetime = 3600*24*14,
+                    IdentityTokenLifetime = 3600*24*14,
+                    //UpdateAccessTokenClaimsOnRefresh = true,
+                    //RefreshTokenExpiration = TokenExpiration.Sliding,
+                    //SlidingRefreshTokenLifetime = 3600*24*300,
+                    //AbsoluteRefreshTokenLifetime = 3600*24*300,
+                    AllowOfflineAccess = true
                 }
             };
         }

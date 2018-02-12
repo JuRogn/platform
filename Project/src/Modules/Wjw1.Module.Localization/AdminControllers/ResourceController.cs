@@ -137,7 +137,7 @@ namespace Web.Areas.Platform.Controllers
             
             _iResourceService.Delete(id);
 
-            _iResourceService.CommitAsync().Wait();
+            await _iResourceService.CommitAsync();
 
             return new DeleteSuccessResult();
         }
