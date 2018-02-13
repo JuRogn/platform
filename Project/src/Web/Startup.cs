@@ -23,6 +23,7 @@ using Microsoft.AspNetCore.Identity;
 using Swashbuckle.AspNetCore.Swagger;
 using Web.Hubs;
 using Microsoft.Extensions.Hosting;
+using Web.Helpers;
 
 namespace Web
 {

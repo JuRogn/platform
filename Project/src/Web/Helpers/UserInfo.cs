@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Wjw1.Infrastructure.Models;
 using Wjw1.Infrastructure;
 
-namespace AngularApp.Helpers
+namespace Web.Helpers
 {
     public class UserInfo : IUserInfo
     {
