@@ -29,6 +29,12 @@
                 url: '/configuration',
                 templateUrl: 'modules/core/admin/configuration/configuration.html',
                 controller: 'ConfigurationCtrl as vm'
+            })
+                .state('login', {
+                url: '/login',
+                templateUrl: 'modules/core/admin/login/login-form.html',
+                controller: 'LoginFormCtrl as vm'
             });
+
         }]);
 })();

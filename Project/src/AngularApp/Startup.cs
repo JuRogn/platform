@@ -8,6 +8,7 @@ using AngularApp.Extensions;
 using AngularApp.Helpers;
 using AngularApp.Hubs;
 using AngularApp.Services;
+using IdentityServer4;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
@@ -19,6 +20,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using Swashbuckle.AspNetCore.Swagger;
 using Wjw1.Infrastructure;
 using Wjw1.Infrastructure.Models;
@@ -109,6 +111,7 @@ namespace AngularApp
                 .AddAspNetIdentity<SysUser>()
                 .AddResourceOwnerValidator<ResourceOwnerPasswordValidator>()
                 .AddProfileService<ProfileService>()
+                .AddJwtBearerClientAuthentication()
                 ;
 
 
@@ -123,8 +126,22 @@ namespace AngularApp
                     options.RequireHttpsMetadata = false;
                     options.ApiName = "api1";
                     options.BackChannelTimeouts = TimeSpan.FromDays(14);
-                });
+                })
+                .AddOpenIdConnect("oidc", "OpenID Connect", options =>
+                {
+                    options.RequireHttpsMetadata = false;
+                    options.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
+                    options.SignOutScheme = IdentityServerConstants.SignoutScheme;
 
+                    options.Authority = "http://localhost:53278";
+                    options.ClientId = "implicit";
+
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        NameClaimType = "name",
+                        RoleClaimType = "role"
+                    };
+                }); ;
             // 启用gzip压缩
             services.AddResponseCompression();
 
@@ -227,6 +244,7 @@ namespace AngularApp
             //app.UseAuthentication();
             // Add external authentication middleware below. To configure them please see https://go.microsoft.com/fwlink/?LinkID=532715
             app.UseIdentityServer();
+
             //app.UseWebSockets();
             app.UseSignalR(routes => {
                 routes.MapHub<CounterHub>("c");

@@ -58,6 +58,9 @@
     <script simpl-append-version="true" src="~/modules/core/admin/common/translation-service.js"></script>
 
     <script simpl-append-version="true" src="~/modules/core/admin/core.module.js"></script>
+    <script simpl-append-version="true" src="~/modules/core/admin/login/login-service.js"></script>
+    <script simpl-append-version="true" src="~/modules/core/admin/login/login-form.js"></script>
+
     @*<script simpl-append-version="true" src="~/modules/localization/admin/localization.module.js"></script>
         <script simpl-append-version="true" src="~/modules/localization/admin/localization/localization-service.js"></script>
         <script simpl-append-version="true" src="~/modules/localization/admin/localization/localization-form.js"></script>*@
@@ -78,6 +81,7 @@
                 <ul class="nav navbar-nav">
                     @if (User.IsInRole("admin"))
                     {
+                    }
                     <li class="dropdown">
                         <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@Localizer["Site"] <span class="caret"></span></a>
                         <ul class="dropdown-menu">
@@ -86,20 +90,25 @@
                             <li><a ui-sref="reviews">@Localizer["Reviews"]</a></li>
                         </ul>
                     </li>
-                    }
+                     <li class="dropdown">
+                        <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@Localizer["Login"] <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a ui-sref="login">@Localizer["Login"]</a></li>
+                        </ul>
+                    </li>
                     <li class="dropdown">
                         <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@Localizer["Catalog"] <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a ui-sref="product">@Localizer["Products"]</a></li>
                             @if(User.IsInRole("admin"))
                             {
+                            }
                             <li><a ui-sref="category">@Localizer["Categories"]</a></li>
                             <li><a ui-sref="brand">@Localizer["Brands"]</a></li>
                             <li><a ui-sref="product-option">@Localizer["Product Options"]</a></li>
                             <li><a ui-sref="product-attribute-group">@Localizer["Product Attribute Groups"]</a></li>
                             <li><a ui-sref="product-attribute">@Localizer["Product Attributes"]</a></li>
                             <li><a ui-sref="product-template">@Localizer["Product Templates"]</a></li>
-                            }
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -110,6 +119,7 @@
                     </li>
                     @if (User.IsInRole("admin"))
                     {
+                    }
                     <li class="dropdown">
                         <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@Localizer["Content Management"] <span class="caret"></span></a>
                         <ul class="dropdown-menu">
@@ -134,7 +144,6 @@
                             <li><a ui-sref="contact">@Localizer["Manage Contact"]</a></li>
                         </ul>
                     </li>
-                    }
                 </ul>
                 <form asp-area="" asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="navbar-right">
                     <ul class="nav navbar-nav navbar-right">
