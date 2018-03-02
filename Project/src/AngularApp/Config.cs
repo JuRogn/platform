@@ -130,6 +130,24 @@ namespace AngularApp
                     //SlidingRefreshTokenLifetime = 3600*24*300,
                     //AbsoluteRefreshTokenLifetime = 3600*24*300,
                     AllowOfflineAccess = true
+                },
+                new Client
+                {
+                    ClientId = "js",
+                    ClientName = "JavaScript Client",
+                    AllowedGrantTypes = GrantTypes.Implicit,
+                    AllowAccessTokensViaBrowser = true,
+
+                    RedirectUris = { "http://localhost:53278/callback.html" },
+                    PostLogoutRedirectUris = { "http://localhost:53278/index.html" },
+                    AllowedCorsOrigins = { "http://localhost:53278" },
+
+                    AllowedScopes =
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        "api1"
+                    },
                 }
             };
         }
